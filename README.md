@@ -37,6 +37,8 @@ $movie = $this->get('wtfz_tmdb.movie_repository')->load(13);
 
 An overview of all the repositories can be found in the services configuration [tmdb.xml](https://github.com/wtfzdotnet/WtfzTmdbBundle/blob/master/Resources/config/tmdb.xml).
 
+**For all all other interactions take a look at [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api).**
+
 There is also a Twig helper that makes use of the `Tmdb\Helper\ImageHelper` to output urls and html.
 
 ```twig
