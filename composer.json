@@ -1,0 +1,22 @@
+{
+    "name": "wtfzdotnet/wtfz-tmdb-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Symfony2 Bundle for TMDB ( The Movie Database ) API. Provides easy access to the wtfzdotnet/php-tmdb-api library.",
+    "homepage": "https://github.com/wtfzdotnet/php-tmdb-api",
+    "keywords": ["tmdb", "api", "php","wrapper", "movie", "tv", "tv show", "tvdb"],
+    "authors": [
+        {
+            "name": "Michael Roterman",
+            "homepage": "http://wtfz.net",
+            "email": "michael@wtfz.net"
+        }
+    ],
+    "require": {
+        "wtfzdotnet/php-tmdb-api": "*"
+    },
+    "autoload": {
+        "psr-0": { "Wtfz\\TmdbBundle": "" }
+    },
+    "target-dir": "Wtfz/TmdbBundle"
+}
