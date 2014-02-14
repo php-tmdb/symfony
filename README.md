@@ -11,12 +11,15 @@ Please review the state as described in the [README.md](https://github.com/wtfzd
 
 Configuration
 ----------------
-Added to your `app/config/config.yml` the following:
+Add to your `app/config/config.yml` the following:
 
+```yaml
 wtfz_tmdb:
     api_key: YOUR_API_KEY_HERE
+```
 
 That's all! Fire away!
+
 
 Usage
 ----------------
