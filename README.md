@@ -19,6 +19,7 @@ wtfz_tmdb:
 
 That's all! Fire away!
 
+__There will be adult and language filters coming in a later stage.__
 
 Usage
 ----------------
