@@ -7,7 +7,7 @@ Status
 ----------------
 
 Underlying library is still progressing towards stable, however most things should already be functional.
-Please review the state as described in the [README.md](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md) TMDB Wrapper. of `[wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md)`.
+Please review the state as described in the [README.md](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md) TMDB Wrapper. of [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md).
 
 Usage
 ----------------
