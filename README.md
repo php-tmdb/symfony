@@ -9,6 +9,15 @@ Status
 Underlying library is still progressing towards stable, however most things should already be functional.
 Please review the state as described in the [README.md](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md) TMDB Wrapper of [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md).
 
+Configuration
+----------------
+Added to your `app/config/config.yml` the following:
+
+wtfz_tmdb:
+    api_key: YOUR_API_KEY_HERE
+
+That's all! Fire away!
+
 Usage
 ----------------
 
