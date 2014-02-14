@@ -7,7 +7,7 @@ Status
 ----------------
 
 Underlying library is still progressing towards stable, however most things should already be functional.
-Please review the state as described in the [README.md](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md) TMDB Wrapper. of [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md).
+Please review the state as described in the [README.md](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md) TMDB Wrapper of [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md).
 
 Usage
 ----------------
@@ -23,6 +23,8 @@ Grabbing repositories
 ```php
 $movie = $this->get('wtfz_tmdb.movie_repository')->load(13);
 ```
+
+An overview of all the repositories can be found in the services configuration [tmdb.xml](https://github.com/wtfzdotnet/WtfzTmdbBundle/blob/master/Resources/config/tmdb.xml).
 
 There is also a Twig helper that makes use of the `Tmdb\Helper\ImageHelper` to output urls and html.
 
