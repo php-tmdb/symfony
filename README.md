@@ -1,7 +1,6 @@
-A Symfony2 Bundle for use together with the [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api) TMDB Wrapper.
+Description
 ----------------
-[![License](https://poser.pugx.org/wtfzdotnet/wtfz-tmdb-api/license.png)](https://packagist.org/packages/wtfzdotnet/wtfz-tmdb-api)
-
+A Symfony2 Bundle for use together with the [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api) TMDB Wrapper.
 
 Status
 ----------------
