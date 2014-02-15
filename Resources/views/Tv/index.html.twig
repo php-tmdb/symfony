@@ -1,8 +1,0 @@
-<h1>{{ tv.name }}</h1>
-
-
-{{ tv.backdropImage|tmdb_image_url }}<br />
-
-{% for image in tv.images %}
-    {{  image|tmdb_image_html('original', null, 50)|raw }}<br />
-{% endfor %}
