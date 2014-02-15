@@ -19,7 +19,24 @@ wtfz_tmdb:
 
 That's all! Fire away!
 
-__There will be adult and language filters coming in a later stage.__
+__There will be adult and language filters coming in a later stage, so later on the configuration will look like:__
+
+```yaml
+wtfz_tmdb:
+    api_key: YOUR_API_KEY_HERE
+    include_adult: false
+    language: nl
+```
+
+__Also overriding repositories will be possible later on:__
+
+```yaml
+wtfz_tmdb:
+    api_key: YOUR_API_KEY_HERE
+    repositories:
+        movie_repository:
+            class: "MyBundle\Repository\MovieRepository
+```
 
 Usage
 ----------------
