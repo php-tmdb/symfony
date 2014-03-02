@@ -19,7 +19,7 @@ wtfz_tmdb:
 
 That's all! Fire away!
 
-** Want to make use of default caching? **
+__Want to make use of default caching?__
 
 This caching system will adhere to the TMDB API max-age values, if you have different needs like long TTL's
 you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
