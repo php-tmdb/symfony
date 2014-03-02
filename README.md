@@ -1,12 +1,12 @@
 Description
 ----------------
+
 A Symfony2 Bundle for use together with the [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api) TMDB Wrapper.
 
 Status
 ----------------
 
-Underlying library is still progressing towards stable, however most things should already be functional.
-Please review the state as described in the [README.md](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md) of [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api/blob/develop/README.md).
+Underlying library is as good as stable, currently in last review.
 
 Configuration
 ----------------
@@ -30,6 +30,10 @@ wtfz_tmdb:
     cache:
         enabled: true
         path: "/tmp/php-tmdb-api"
+
+    log:
+        enabled: true
+        path: "/tmp/php-tmdb-api.log"
 ```
 
 __There will be adult and language filters coming in a later stage, so later on the configuration will look like:__
@@ -41,26 +45,16 @@ wtfz_tmdb:
     language: nl
 ```
 
-__Also overriding repositories will be possible later on:__
-
-```yaml
-wtfz_tmdb:
-    api_key: YOUR_API_KEY_HERE
-    repositories:
-        movie_repository:
-            class: "MyBundle\Repository\MovieRepository
-```
-
 Usage
 ----------------
 
-Grabbing the client
+Obtaining the client
 
 ```php
 $client = $this->get('wtfz_tmdb.client');
 ```
 
-Grabbing repositories
+Obtaining repositories
 
 ```php
 $movie = $this->get('wtfz_tmdb.movie_repository')->load(13);

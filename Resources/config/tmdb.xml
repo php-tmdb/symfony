@@ -48,6 +48,11 @@
                 <argument>%wtfz_tmdb.cache.enabled%</argument>
                 <argument>%wtfz_tmdb.cache.path%</argument>
             </call>
+
+            <call method="setLogging">
+                <argument>%wtfz_tmdb.log.enabled%</argument>
+                <argument>%wtfz_tmdb.log.path%</argument>
+            </call>
         </service>
 
         <service id="wtfz_tmdb.api_token" class="%wtfz_tmdb.api_token.class%">

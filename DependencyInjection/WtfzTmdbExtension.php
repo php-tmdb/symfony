@@ -40,5 +40,13 @@ class WtfzTmdbExtension extends Extension
             $container->setParameter('wtfz_tmdb.cache.enabled', $cacheEnabled);
             $container->setParameter('wtfz_tmdb.cache.path', $cachePath);
         }
+
+        if (array_key_exists('log', $config)) {
+            $logEnabled = array_key_exists('enabled', $config['log']) && $config['log']['enabled'];
+            $logPath    = array_key_exists('path', $config['log']) ? $config['log']['path'] : null;
+
+            $container->setParameter('wtfz_tmdb.log.enabled', $logEnabled);
+            $container->setParameter('wtfz_tmdb.log.path', $logPath);
+        }
     }
 }

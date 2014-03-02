@@ -29,6 +29,12 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('path')->end()
                     ->end()
                 ->end()
+                ->arrayNode('log')
+                    ->children()
+                        ->scalarNode('enabled')->end()
+                        ->scalarNode('path')->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 
