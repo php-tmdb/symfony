@@ -31,9 +31,14 @@ class WtfzTmdbExtension extends Extension
             );
         }
 
-        $container->setParameter(
-            'wtfz_tmdb.api_key',
-            $config['api_key']
-        );
+        $container->setParameter('wtfz_tmdb.api_key', $config['api_key']);
+
+        if (array_key_exists('cache', $config)) {
+            $cacheEnabled = array_key_exists('enabled', $config['cache']) && $config['cache']['enabled'];
+            $cachePath    = array_key_exists('path', $config['cache']) ? $config['cache']['path'] : null;
+
+            $container->setParameter('wtfz_tmdb.cache.enabled', $cacheEnabled);
+            $container->setParameter('wtfz_tmdb.cache.path', $cachePath);
+        }
     }
 }

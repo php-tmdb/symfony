@@ -13,7 +13,8 @@
         }
     ],
     "require": {
-        "wtfzdotnet/php-tmdb-api": "*"
+        "wtfzdotnet/php-tmdb-api": "*",
+        "doctrine/cache": ">=1.3.0"
     },
     "autoload": {
         "psr-0": { "Wtfz\\TmdbBundle": "" }

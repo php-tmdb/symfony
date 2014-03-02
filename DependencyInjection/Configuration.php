@@ -23,6 +23,12 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('api_key')->end()
+                ->arrayNode('cache')
+                    ->children()
+                        ->scalarNode('enabled')->end()
+                        ->scalarNode('path')->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

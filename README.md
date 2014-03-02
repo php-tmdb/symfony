@@ -19,6 +19,19 @@ wtfz_tmdb:
 
 That's all! Fire away!
 
+** Want to make use of default caching? **
+
+This caching system will adhere to the TMDB API max-age values, if you have different needs like long TTL's
+you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
+
+```yaml
+wtfz_tmdb:
+    api_key: YOUR_API_KEY_HERE
+    cache:
+        enabled: true
+        path: "/tmp/php-tmdb-api"
+```
+
 __There will be adult and language filters coming in a later stage, so later on the configuration will look like:__
 
 ```yaml

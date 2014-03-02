@@ -5,13 +5,20 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
+        <!-- Options parameters -->
         <parameter key="wtfz_tmdb.api_key" />
+        <parameter key="wtfz_tmdb.cache.enabled" />
+        <parameter key="wtfz_tmdb.cache.path" />
 
         <!-- Main classes -->
-        <parameter key="wtfz_tmdb.api_token.class">Tmdb\ApiToken</parameter>
         <parameter key="wtfz_tmdb.client.class">Tmdb\Client</parameter>
+        <parameter key="wtfz_tmdb.api_token.class">Tmdb\ApiToken</parameter>
+        <parameter key="wtfz_tmdb.request_token.class">Tmdb\RequestToken</parameter>
+        <parameter key="wtfz_tmdb.session_token.class">Tmdb\SessionToken</parameter>
 
         <!-- Repository classes -->
+        <parameter key="wtfz_tmdb.authentication_repository.class">Tmdb\Repository\AuthenticationRepository</parameter>
+        <parameter key="wtfz_tmdb.account_repository.class">Tmdb\Repository\AccountRepository</parameter>
         <parameter key="wtfz_tmdb.certification_repository.class">Tmdb\Repository\CertificationRepository</parameter>
         <parameter key="wtfz_tmdb.changes_repository.class">Tmdb\Repository\ChangesRepository</parameter>
         <parameter key="wtfz_tmdb.collection_repository.class">Tmdb\Repository\CollectionRepository</parameter>
@@ -37,6 +44,10 @@
     <services>
         <service id="wtfz_tmdb.client" class="%wtfz_tmdb.client.class%">
             <argument type="service" id="wtfz_tmdb.api_token" />
+            <call method="setCaching">
+                <argument>%wtfz_tmdb.cache.enabled%</argument>
+                <argument>%wtfz_tmdb.cache.path%</argument>
+            </call>
         </service>
 
         <service id="wtfz_tmdb.api_token" class="%wtfz_tmdb.api_token.class%">

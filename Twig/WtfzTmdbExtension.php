@@ -4,7 +4,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
+ *
  * @package Wrike
  * @author Michael Roterman <michael@b-found.nl>
  * @copyright (c) 2013, B-Found Internet Marketing & Services
@@ -13,13 +13,13 @@
 
 namespace Wtfz\TmdbBundle\Twig;
 
-
 use Tmdb\Client;
 use Tmdb\Helper\ImageHelper;
 use Tmdb\Model\Image;
 use Tmdb\Repository\ConfigurationRepository;
 
-class WtfzTmdbExtension extends \Twig_Extension {
+class WtfzTmdbExtension extends \Twig_Extension
+{
     private $helper;
 
     private $client;
@@ -60,12 +60,13 @@ class WtfzTmdbExtension extends \Twig_Extension {
     }
 
     /**
-     * @param null $client
+     * @param  null  $client
      * @return $this
      */
     public function setClient($client)
     {
         $this->client = $client;
+
         return $this;
     }
 
@@ -78,12 +79,13 @@ class WtfzTmdbExtension extends \Twig_Extension {
     }
 
     /**
-     * @param mixed $configuration
+     * @param  mixed $configuration
      * @return $this
      */
     public function setConfiguration($configuration)
     {
         $this->configuration = $configuration;
+
         return $this;
     }
 
@@ -96,12 +98,13 @@ class WtfzTmdbExtension extends \Twig_Extension {
     }
 
     /**
-     * @param \Wtfz\TmdbBundle\Twig\Tmdb\Helper\ImageHelper $helper
+     * @param  \Wtfz\TmdbBundle\Twig\Tmdb\Helper\ImageHelper $helper
      * @return $this
      */
     public function setHelper($helper)
     {
         $this->helper = $helper;
+
         return $this;
     }
 
@@ -112,6 +115,5 @@ class WtfzTmdbExtension extends \Twig_Extension {
     {
         return $this->helper;
     }
-
 
 }
