@@ -44,12 +44,12 @@ class WtfzTmdbExtension extends \Twig_Extension
         );
     }
 
-    public function getHtml(Image $image, $size = 'original', $width = null, $height = null)
+    public function getHtml($image, $size = 'original', $width = null, $height = null)
     {
         return $this->helper->getHtml($image, $size, $width, $height);
     }
 
-    public function getUrl(Image $image)
+    public function getUrl($image)
     {
         return $this->helper->getUrl($image);
     }
