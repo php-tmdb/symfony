@@ -3,11 +3,6 @@ Description
 
 A Symfony2 Bundle for use together with the [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api) TMDB Wrapper.
 
-Status
-----------------
-
-Underlying library is as good as stable, currently in last review.
-
 Configuration
 ----------------
 Add to your `app/config/config.yml` the following:
@@ -34,15 +29,6 @@ wtfz_tmdb:
     log:
         enabled: true
         path: "/tmp/php-tmdb-api.log"
-```
-
-__There will be adult and language filters coming in a later stage, so later on the configuration will look like:__
-
-```yaml
-wtfz_tmdb:
-    api_key: YOUR_API_KEY_HERE
-    include_adult: false
-    language: nl
 ```
 
 Usage
