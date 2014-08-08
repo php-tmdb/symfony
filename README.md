@@ -14,21 +14,55 @@ wtfz_tmdb:
 
 That's all! Fire away!
 
-__Want to make use of default caching?__
+__Default caching and loggin capabilities?__
 
 This caching system will adhere to the TMDB API max-age values, if you have different needs like long TTL's
 you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
 
+Default configuration looks like this :
+
 ```yaml
 wtfz_tmdb:
-    api_key: YOUR_API_KEY_HERE
+    ...
     cache:
         enabled: true
-        path: "/tmp/php-tmdb-api"
-
+        path: "%kernel.cache_dir%/tmdb"
     log:
         enabled: true
-        path: "/tmp/php-tmdb-api.log"
+        path: "%kernel.logs_dir%/tmdb.log"
+```
+
+You can disable if you don't want to use it :
+
+```yaml
+wtfz_tmdb:
+    ...
+    cache:
+        enabled: false
+    log:
+        enabled: false
+```
+
+__Disable repositories?__
+
+You can disable repositories if you don't use them :
+
+```yaml
+wtfz_tmdb:
+    ...
+    repositories:
+        enabled: false
+```
+
+__Disable twig extension?__
+
+You can disable twig extension if you don't use it :
+
+```yaml
+wtfz_tmdb:
+    ...
+    twig_extension:
+        enabled: false
 ```
 
 Usage

@@ -22,21 +22,22 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('api_key')->end()
+                ->scalarNode('api_key')->isRequired()->cannotBeEmpty()->end()
                 ->arrayNode('cache')
+                    ->canBeDisabled()
                     ->children()
-                        ->scalarNode('enabled')->end()
-                        ->scalarNode('path')->end()
+                        ->scalarNode('path')->defaultValue('%kernel.cache_dir%/tmdb')->end()
                     ->end()
                 ->end()
                 ->arrayNode('log')
+                    ->canBeDisabled()
                     ->children()
-                        ->scalarNode('enabled')->end()
-                        ->scalarNode('path')->end()
+                        ->scalarNode('path')->defaultValue('%kernel.logs_dir%/tmdb.log')->end()
                     ->end()
                 ->end()
-            ->end()
-        ;
+                ->arrayNode('repositories')->canBeDisabled()->end()
+                ->arrayNode('twig_extension')->canBeDisabled()->end()
+            ->end();
 
         return $treeBuilder;
     }

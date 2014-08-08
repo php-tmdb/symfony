@@ -23,30 +23,26 @@ class WtfzTmdbExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('tmdb.xml');
-
-        if (!isset($config['api_key'])) {
-            throw new \InvalidArgumentException(
-                'The "api_key" option must be set'
-            );
-        }
+        $loader->load('services.xml');
 
         $container->setParameter('wtfz_tmdb.api_key', $config['api_key']);
 
-        if (array_key_exists('cache', $config)) {
-            $cacheEnabled = array_key_exists('enabled', $config['cache']) && $config['cache']['enabled'];
-            $cachePath    = array_key_exists('path', $config['cache']) ? $config['cache']['path'] : null;
-
-            $container->setParameter('wtfz_tmdb.cache.enabled', $cacheEnabled);
-            $container->setParameter('wtfz_tmdb.cache.path', $cachePath);
+        if ($config['cache']['enabled']) {
+            $path = $container->getParameterBag()->resolveValue($config['cache']['path']);
+            $container->getDefinition('wtfz_tmdb.client')->addMethodCall('setCaching', array(true, $path));
         }
 
-        if (array_key_exists('log', $config)) {
-            $logEnabled = array_key_exists('enabled', $config['log']) && $config['log']['enabled'];
-            $logPath    = array_key_exists('path', $config['log']) ? $config['log']['path'] : null;
+        if ($config['log']['enabled']) {
+            $path = $container->getParameterBag()->resolveValue($config['log']['path']);
+            $container->getDefinition('wtfz_tmdb.client')->addMethodCall('setLogging', array(true, $path));
+        }
 
-            $container->setParameter('wtfz_tmdb.log.enabled', $logEnabled);
-            $container->setParameter('wtfz_tmdb.log.path', $logPath);
+        if ($config['repositories']['enabled']) {
+            $loader->load('repositories.xml');
+        }
+
+        if ($config['twig_extension']['enabled']) {
+            $loader->load('twig.xml');
         }
     }
 }
