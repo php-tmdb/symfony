@@ -14,53 +14,40 @@ wtfz_tmdb:
 
 That's all! Fire away!
 
-__Default caching and loggin capabilities?__
+__Want to make use of default caching and/or logging?__
 
 This caching system will adhere to the TMDB API max-age values, if you have different needs like long TTL's
 you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
 
-Default configuration looks like this :
-
 ```yaml
 wtfz_tmdb:
-    ...
+    api_key: YOUR_API_KEY_HERE
     cache:
         enabled: true
-        path: "%kernel.cache_dir%/tmdb"
+        #path: "%kernel.cache_dir%/tmdb"
     log:
         enabled: true
-        path: "%kernel.logs_dir%/tmdb.log"
+        #path: "%kernel.logs_dir%/tmdb.log"
 ```
 
-You can disable if you don't want to use it :
+__Don't need the repositories?__
+
+You can disable repositories :
 
 ```yaml
 wtfz_tmdb:
-    ...
-    cache:
-        enabled: false
-    log:
-        enabled: false
-```
-
-__Disable repositories?__
-
-You can disable repositories if you don't use them :
-
-```yaml
-wtfz_tmdb:
-    ...
+    api_key: YOUR_API_KEY_HERE
     repositories:
         enabled: false
 ```
 
-__Disable twig extension?__
+__Don't need the twig extension?__
 
-You can disable twig extension if you don't use it :
+You can disable the twig extension :
 
 ```yaml
 wtfz_tmdb:
-    ...
+    api_key: YOUR_API_KEY_HERE
     twig_extension:
         enabled: false
 ```
@@ -80,7 +67,7 @@ Obtaining repositories
 $movie = $this->get('wtfz_tmdb.movie_repository')->load(13);
 ```
 
-An overview of all the repositories can be found in the services configuration [tmdb.xml](https://github.com/wtfzdotnet/WtfzTmdbBundle/blob/master/Resources/config/tmdb.xml).
+An overview of all the repositories can be found in the services configuration [repositories.xml](https://github.com/wtfzdotnet/WtfzTmdbBundle/blob/master/Resources/config/repositories.xml).
 
 There is also a Twig helper that makes use of the `Tmdb\Helper\ImageHelper` to output urls and html.
 
