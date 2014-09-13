@@ -3,6 +3,21 @@ Description
 
 A Symfony2 Bundle for use together with the [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api) TMDB Wrapper.
 
+Installation
+------------
+Install Composer
+
+```
+$ curl -sS https://getcomposer.org/installer | php
+$ sudo mv composer.phar /usr/local/bin/composer
+```
+
+Add the following to your require block in composer.json config
+
+```
+"wtfzdotnet/wtfz-tmdb-bundle": "~1.2"
+```
+
 Configuration
 ----------------
 Add to your `app/config/config.yml` the following:
