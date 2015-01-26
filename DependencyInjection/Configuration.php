@@ -2,8 +2,10 @@
 
 namespace Wtfz\TmdbBundle\DependencyInjection;
 
+use Monolog\Logger;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Tmdb\Client;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -23,20 +25,33 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('api_key')->isRequired()->cannotBeEmpty()->end()
-                ->arrayNode('cache')
-                    ->canBeEnabled()
-                    ->children()
-                        ->scalarNode('path')->defaultValue('%kernel.cache_dir%/tmdb')->end()
-                    ->end()
-                ->end()
-                ->arrayNode('log')
-                    ->canBeEnabled()
-                    ->children()
-                        ->scalarNode('path')->defaultValue('%kernel.logs_dir%/tmdb.log')->end()
-                    ->end()
-                ->end()
                 ->arrayNode('repositories')->canBeDisabled()->end()
                 ->arrayNode('twig_extension')->canBeDisabled()->end()
+                ->arrayNode('options')
+                    ->children()
+                        ->scalarNode('adapter')->defaultValue(null)->end()
+                        ->scalarNode('secure')->defaultValue(true)->end()
+                        ->scalarNode('host')->defaultValue(Client::TMDB_URI)->end()
+                        ->scalarNode('session_token')->defaultValue(null)->end()
+                        ->arrayNode('cache')
+                            ->canBeDisabled()
+                            ->children()
+                                ->scalarNode('path')->defaultValue('%kernel.cache_dir%/themoviedb')->end()
+                                ->scalarNode('handler')->defaultValue(null)->end()
+                                ->scalarNode('subscriber')->defaultValue(null)->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('log')
+                            ->canBeEnabled()
+                            ->children()
+                                ->scalarNode('level')->defaultValue(Logger::DEBUG)->end()
+                                ->scalarNode('path')->defaultValue('%kernel.logs_dir%/themoviedb.log')->end()
+                                ->scalarNode('handler')->defaultValue(null)->end()
+                                ->scalarNode('subscriber')->defaultValue(null)->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

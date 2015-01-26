@@ -17,10 +17,16 @@
     <services>
         <service id="wtfz_tmdb.client" class="%wtfz_tmdb.client.class%">
             <argument type="service" id="wtfz_tmdb.api_token" />
+            <argument type="collection">
+                <argument key="event_dispatcher" type="service" id="event_dispatcher" />
+                <argument key="secure">%wtfz_tmdb.options.secure%</argument>
+                <argument key="adapter">%wtfz_tmdb.options.adapter%</argument>
+                <argument key="cache">%wtfz_tmdb.options.cache%</argument>
+                <argument key="log">%wtfz_tmdb.options.log%</argument>
+            </argument>
         </service>
         <service id="wtfz_tmdb.api_token" class="%wtfz_tmdb.api_token.class%" public="false">
             <argument>%wtfz_tmdb.api_key%</argument>
         </service>
     </services>
-
 </container>
