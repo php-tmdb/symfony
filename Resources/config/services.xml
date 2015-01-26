@@ -9,6 +9,7 @@
         <parameter key="wtfz_tmdb.api_key" />
         <!-- Main classes -->
         <parameter key="wtfz_tmdb.client.class">Tmdb\Client</parameter>
+        <parameter key="wtfz_tmdb.client_configuration.class">Wtfz\TmdbBundle\ClientConfiguration</parameter>
         <parameter key="wtfz_tmdb.api_token.class">Tmdb\ApiToken</parameter>
         <parameter key="wtfz_tmdb.request_token.class">Tmdb\RequestToken</parameter>
         <parameter key="wtfz_tmdb.session_token.class">Tmdb\SessionToken</parameter>
@@ -17,16 +18,16 @@
     <services>
         <service id="wtfz_tmdb.client" class="%wtfz_tmdb.client.class%">
             <argument type="service" id="wtfz_tmdb.api_token" />
-            <argument type="collection">
-                <argument key="event_dispatcher" type="service" id="event_dispatcher" />
-                <argument key="secure">%wtfz_tmdb.options.secure%</argument>
-                <argument key="adapter">%wtfz_tmdb.options.adapter%</argument>
-                <argument key="cache">%wtfz_tmdb.options.cache%</argument>
-                <argument key="log">%wtfz_tmdb.options.log%</argument>
-            </argument>
+            <argument type="service" id="wtfz_tmdb.configuration" />
         </service>
+
         <service id="wtfz_tmdb.api_token" class="%wtfz_tmdb.api_token.class%" public="false">
             <argument>%wtfz_tmdb.api_key%</argument>
+        </service>
+
+        <service id="wtfz_tmdb.configuration" class="%wtfz_tmdb.client_configuration.class%" public="false">
+            <argument key="event_dispatcher" type="service" id="event_dispatcher" />
+            <argument>%wtfz_tmdb.options%</argument>
         </service>
     </services>
 </container>

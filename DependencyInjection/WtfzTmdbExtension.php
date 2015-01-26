@@ -45,12 +45,7 @@ class WtfzTmdbExtension extends Extension
             $options = $this->handleLog($options);
         }
 
-        foreach($options as $key => $value) {
-            $container->setParameter(sprintf(
-                'wtfz_tmdb.options.%s',
-                $key
-            ), $value);
-        }
+        $container->setParameter('wtfz_tmdb.options', $options);
     }
 
     protected function handleCache($options)
