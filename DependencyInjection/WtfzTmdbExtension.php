@@ -27,16 +27,6 @@ class WtfzTmdbExtension extends Extension
 
         $container->setParameter('wtfz_tmdb.api_key', $config['api_key']);
 
-        if ($config['cache']['enabled']) {
-            $path = $container->getParameterBag()->resolveValue($config['cache']['path']);
-            $container->getDefinition('wtfz_tmdb.client')->addMethodCall('setCaching', array(true, $path));
-        }
-
-        if ($config['log']['enabled']) {
-            $path = $container->getParameterBag()->resolveValue($config['log']['path']);
-            $container->getDefinition('wtfz_tmdb.client')->addMethodCall('setLogging', array(true, $path));
-        }
-
         if ($config['repositories']['enabled']) {
             $loader->load('repositories.xml');
         }
@@ -44,5 +34,40 @@ class WtfzTmdbExtension extends Extension
         if ($config['twig_extension']['enabled']) {
             $loader->load('twig.xml');
         }
+
+        $options = $config['options'];
+
+        if ($options['cache']['enabled']) {
+            $options = $this->handleCache($options);
+        }
+
+        if ($options['log']['enabled']) {
+            $options = $this->handleLog($options);
+        }
+
+        foreach($options as $key => $value) {
+            $container->setParameter(sprintf(
+                'wtfz_tmdb.options.%s',
+                $key
+            ), $value);
+        }
+    }
+
+    protected function handleCache($options)
+    {
+        if (null !== $handler = $options['cache']['handler']) {
+            $options['cache']['handler'] = !is_string($handler) ? $handler: new $handler();
+        }
+
+        return $options;
+    }
+
+    protected function handleLog($options)
+    {
+        if (null !== $handler = $options['log']['handler']) {
+            $options['log']['handler'] = !is_string($handler) ? $handler: new $handler();
+        }
+
+        return $options;
     }
 }
