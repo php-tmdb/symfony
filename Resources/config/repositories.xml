@@ -13,7 +13,7 @@
         <parameter key="wtfz_tmdb.company_repository.class">Tmdb\Repository\CompanyRepository</parameter>
         <parameter key="wtfz_tmdb.configuration_repository.class">Tmdb\Repository\ConfigurationRepository</parameter>
         <parameter key="wtfz_tmdb.credits_repository.class">Tmdb\Repository\CreditsRepository</parameter>
-        <parameter key="wtfz_tmdb.discovery_repository.class">Tmdb\Repository\DiscoveryRepository</parameter>
+        <parameter key="wtfz_tmdb.discover_repository.class">Tmdb\Repository\DiscoverRepository</parameter>
         <parameter key="wtfz_tmdb.find_repository.class">Tmdb\Repository\FindRepository</parameter>
         <parameter key="wtfz_tmdb.genre_repository.class">Tmdb\Repository\GenreRepository</parameter>
         <parameter key="wtfz_tmdb.jobs_repository.class">Tmdb\Repository\JobsRepository</parameter>
@@ -54,7 +54,7 @@
             <argument type="service" id="wtfz_tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.discovery_repository" class="%wtfz_tmdb.discovery_repository.class%">
+        <service id="wtfz_tmdb.discover_repository" class="%wtfz_tmdb.discover_repository.class%">
             <argument type="service" id="wtfz_tmdb.client" />
         </service>
 
