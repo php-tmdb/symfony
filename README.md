@@ -95,8 +95,7 @@ tmdb_symfony:
         enabled: true # Set to false to disable twig extensions
     options:
         adapter: null
-        secure:
-            enabled: true # Set to false to disable https
+        secure: true # Set to false to disable https
         host: "api.themoviedb.org/3/"
         sesion_token: null
         cache:
