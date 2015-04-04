@@ -1,5 +1,5 @@
 <?php
-namespace Tmdb\Symfony\Twig;
+namespace Tmdb\SymfonyBundle\Twig;
 
 use Tmdb\Client;
 use Tmdb\Helper\ImageHelper;

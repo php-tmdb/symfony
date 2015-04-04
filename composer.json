@@ -17,6 +17,6 @@
         "php-tmdb/api": "~2.0"
     },
     "autoload": {
-        "psr-4": { "Tmdb\\Symfony\\": "" }
+        "psr-4": { "Tmdb\\SymfonyBundle\\": "" }
     }
 }

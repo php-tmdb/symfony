@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="tmdb.twig.image_extension.class">Tmdb\Symfony\Twig\TmdbExtension</parameter>
+        <parameter key="tmdb.twig.image_extension.class">Tmdb\SymfonyBundle\Twig\TmdbExtension</parameter>
     </parameters>
 
     <services>
@@ -14,5 +14,4 @@
             <tag name="twig.extension" />
         </service>
     </services>
-
 </container>

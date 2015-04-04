@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+yeah<?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,7 +9,7 @@
         <parameter key="tmdb.api_key" />
         <!-- Main classes -->
         <parameter key="tmdb.client.class">Tmdb\Client</parameter>
-        <parameter key="tmdb.client_configuration.class">Tmdb\Symfony\ClientConfiguration</parameter>
+        <parameter key="tmdb.client_configuration.class">Tmdb\SymfonyBundle\ClientConfiguration</parameter>
         <parameter key="tmdb.api_token.class">Tmdb\ApiToken</parameter>
         <parameter key="tmdb.request_token.class">Tmdb\RequestToken</parameter>
         <parameter key="tmdb.session_token.class">Tmdb\SessionToken</parameter>

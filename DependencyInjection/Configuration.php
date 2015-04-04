@@ -1,5 +1,5 @@
 <?php
-namespace Tmdb\Symfony\DependencyInjection;
+namespace Tmdb\SymfonyBundle\DependencyInjection;
 
 use Monolog\Logger;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;

@@ -20,6 +20,18 @@ Add the following to your require block in composer.json config
 
 Configuration
 ----------------
+Register the bundle in `app/AppKernel.php`:
+
+```php
+    public function registerBundles()
+    {
+        $bundles = array(
+        ...
+        new Tmdb\SymfonyBundle\TmdbSymfonyBundle(),
+        ...
+    }
+```
+
 Add to your `app/config/config.yml` the following:
 
 ```yaml
