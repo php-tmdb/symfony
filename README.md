@@ -1,7 +1,7 @@
 Description
 ----------------
 
-A Symfony2 Bundle for use together with the [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api) TMDB Wrapper.
+A Symfony2 Bundle for use together with the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB Wrapper.
 
 Installation
 ------------
@@ -23,7 +23,7 @@ Configuration
 Add to your `app/config/config.yml` the following:
 
 ```yaml
-wtfz_tmdb:
+tmdb:
     api_key: YOUR_API_KEY_HERE
 ```
 
@@ -35,7 +35,7 @@ This caching system will adhere to the TMDB API max-age values, if you have diff
 you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
 
 ```yaml
-wtfz_tmdb:
+tmdb:
     api_key: YOUR_API_KEY_HERE
     cache:
         enabled: true
@@ -50,7 +50,7 @@ __Don't need the repositories?__
 You can disable repositories :
 
 ```yaml
-wtfz_tmdb:
+tmdb:
     api_key: YOUR_API_KEY_HERE
     repositories:
         enabled: false
@@ -61,7 +61,7 @@ __Don't need the twig extension?__
 You can disable the twig extension :
 
 ```yaml
-wtfz_tmdb:
+tmdb:
     api_key: YOUR_API_KEY_HERE
     twig_extension:
         enabled: false
@@ -73,16 +73,16 @@ Usage
 Obtaining the client
 
 ```php
-$client = $this->get('wtfz_tmdb.client');
+$client = $this->get('tmdb.client');
 ```
 
 Obtaining repositories
 
 ```php
-$movie = $this->get('wtfz_tmdb.movie_repository')->load(13);
+$movie = $this->get('tmdb.movie_repository')->load(13);
 ```
 
-An overview of all the repositories can be found in the services configuration [repositories.xml](https://github.com/wtfzdotnet/WtfzTmdbBundle/blob/master/Resources/config/repositories.xml).
+An overview of all the repositories can be found in the services configuration [repositories.xml](https://github.com/php-tmdb/symfony/blob/master/Resources/config/repositories.xml).
 
 There is also a Twig helper that makes use of the `Tmdb\Helper\ImageHelper` to output urls and html.
 
@@ -92,4 +92,4 @@ There is also a Twig helper that makes use of the `Tmdb\Helper\ImageHelper` to o
 {{ movie.backdropImage|tmdb_image_html('original', null, 50)|raw }}
 ```
 
-**For all all other interactions take a look at [wtfzdotnet/php-tmdb-api](https://github.com/wtfzdotnet/php-tmdb-api).**
+**For all all other interactions take a look at [php-tmdb/api](https://github.com/php-tmdb/api).**
