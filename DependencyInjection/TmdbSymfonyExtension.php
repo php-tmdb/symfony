@@ -1,6 +1,6 @@
 <?php
 
-namespace Wtfz\TmdbBundle\DependencyInjection;
+namespace Tmdb\Symfony\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class WtfzTmdbExtension extends Extension
+class TmdbSymfonyExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -25,7 +25,7 @@ class WtfzTmdbExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('wtfz_tmdb.api_key', $config['api_key']);
+        $container->setParameter('tmdb.api_key', $config['api_key']);
 
         if ($config['repositories']['enabled']) {
             $loader->load('repositories.xml');
@@ -45,7 +45,7 @@ class WtfzTmdbExtension extends Extension
             $options = $this->handleLog($options);
         }
 
-        $container->setParameter('wtfz_tmdb.options', $options);
+        $container->setParameter('tmdb.options', $options);
     }
 
     protected function handleCache($options)

@@ -1,24 +1,12 @@
 <?php
-/**
- * This file is part of the Wrike PHP API created by B-Found IM&S.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @package Wrike
- * @author Michael Roterman <michael@b-found.nl>
- * @copyright (c) 2013, B-Found Internet Marketing & Services
- * @version 0.0.1
- */
-
-namespace Wtfz\TmdbBundle\Twig;
+namespace Tmdb\Symfony\Twig;
 
 use Tmdb\Client;
 use Tmdb\Helper\ImageHelper;
 use Tmdb\Model\Image;
 use Tmdb\Repository\ConfigurationRepository;
 
-class WtfzTmdbExtension extends \Twig_Extension
+class TmdbExtension extends \Twig_Extension
 {
     private $helper;
 
@@ -56,7 +44,7 @@ class WtfzTmdbExtension extends \Twig_Extension
 
     public function getName()
     {
-        return 'wtfz_tmdb_extension';
+        return 'tmdb_extension';
     }
 
     /**
@@ -98,7 +86,7 @@ class WtfzTmdbExtension extends \Twig_Extension
     }
 
     /**
-     * @param  \Wtfz\TmdbBundle\Twig\Tmdb\Helper\ImageHelper $helper
+     * @param  ImageHelper $helper
      * @return $this
      */
     public function setHelper($helper)
@@ -109,11 +97,10 @@ class WtfzTmdbExtension extends \Twig_Extension
     }
 
     /**
-     * @return \Wtfz\TmdbBundle\Twig\Tmdb\Helper\ImageHelper
+     * @return ImageHelper
      */
     public function getHelper()
     {
         return $this->helper;
     }
-
 }

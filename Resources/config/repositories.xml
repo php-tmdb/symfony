@@ -5,109 +5,109 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="wtfz_tmdb.authentication_repository.class">Tmdb\Repository\AuthenticationRepository</parameter>
-        <parameter key="wtfz_tmdb.account_repository.class">Tmdb\Repository\AccountRepository</parameter>
-        <parameter key="wtfz_tmdb.certification_repository.class">Tmdb\Repository\CertificationRepository</parameter>
-        <parameter key="wtfz_tmdb.changes_repository.class">Tmdb\Repository\ChangesRepository</parameter>
-        <parameter key="wtfz_tmdb.collection_repository.class">Tmdb\Repository\CollectionRepository</parameter>
-        <parameter key="wtfz_tmdb.company_repository.class">Tmdb\Repository\CompanyRepository</parameter>
-        <parameter key="wtfz_tmdb.configuration_repository.class">Tmdb\Repository\ConfigurationRepository</parameter>
-        <parameter key="wtfz_tmdb.credits_repository.class">Tmdb\Repository\CreditsRepository</parameter>
-        <parameter key="wtfz_tmdb.discovery_repository.class">Tmdb\Repository\DiscoveryRepository</parameter>
-        <parameter key="wtfz_tmdb.find_repository.class">Tmdb\Repository\FindRepository</parameter>
-        <parameter key="wtfz_tmdb.genre_repository.class">Tmdb\Repository\GenreRepository</parameter>
-        <parameter key="wtfz_tmdb.jobs_repository.class">Tmdb\Repository\JobsRepository</parameter>
-        <parameter key="wtfz_tmdb.keyword_repository.class">Tmdb\Repository\KeywordRepository</parameter>
-        <parameter key="wtfz_tmdb.list_repository.class">Tmdb\Repository\ListRepository</parameter>
-        <parameter key="wtfz_tmdb.movie_repository.class">Tmdb\Repository\MovieRepository</parameter>
-        <parameter key="wtfz_tmdb.network_repository.class">Tmdb\Repository\NetworkRepository</parameter>
-        <parameter key="wtfz_tmdb.people_repository.class">Tmdb\Repository\PeopleRepository</parameter>
-        <parameter key="wtfz_tmdb.review_repository.class">Tmdb\Repository\ReviewRepository</parameter>
-        <parameter key="wtfz_tmdb.search_repository.class">Tmdb\Repository\SearchRepository</parameter>
-        <parameter key="wtfz_tmdb.tv_repository.class">Tmdb\Repository\TvRepository</parameter>
-        <parameter key="wtfz_tmdb.tv_episode_repository.class">Tmdb\Repository\TvEpisodeRepository</parameter>
-        <parameter key="wtfz_tmdb.tv_season_repository.class">Tmdb\Repository\TvSeasonRepository</parameter>
+        <parameter key="tmdb.authentication_repository.class">Tmdb\Repository\AuthenticationRepository</parameter>
+        <parameter key="tmdb.account_repository.class">Tmdb\Repository\AccountRepository</parameter>
+        <parameter key="tmdb.certification_repository.class">Tmdb\Repository\CertificationRepository</parameter>
+        <parameter key="tmdb.changes_repository.class">Tmdb\Repository\ChangesRepository</parameter>
+        <parameter key="tmdb.collection_repository.class">Tmdb\Repository\CollectionRepository</parameter>
+        <parameter key="tmdb.company_repository.class">Tmdb\Repository\CompanyRepository</parameter>
+        <parameter key="tmdb.configuration_repository.class">Tmdb\Repository\ConfigurationRepository</parameter>
+        <parameter key="tmdb.credits_repository.class">Tmdb\Repository\CreditsRepository</parameter>
+        <parameter key="tmdb.discovery_repository.class">Tmdb\Repository\DiscoveryRepository</parameter>
+        <parameter key="tmdb.find_repository.class">Tmdb\Repository\FindRepository</parameter>
+        <parameter key="tmdb.genre_repository.class">Tmdb\Repository\GenreRepository</parameter>
+        <parameter key="tmdb.jobs_repository.class">Tmdb\Repository\JobsRepository</parameter>
+        <parameter key="tmdb.keyword_repository.class">Tmdb\Repository\KeywordRepository</parameter>
+        <parameter key="tmdb.list_repository.class">Tmdb\Repository\ListRepository</parameter>
+        <parameter key="tmdb.movie_repository.class">Tmdb\Repository\MovieRepository</parameter>
+        <parameter key="tmdb.network_repository.class">Tmdb\Repository\NetworkRepository</parameter>
+        <parameter key="tmdb.people_repository.class">Tmdb\Repository\PeopleRepository</parameter>
+        <parameter key="tmdb.review_repository.class">Tmdb\Repository\ReviewRepository</parameter>
+        <parameter key="tmdb.search_repository.class">Tmdb\Repository\SearchRepository</parameter>
+        <parameter key="tmdb.tv_repository.class">Tmdb\Repository\TvRepository</parameter>
+        <parameter key="tmdb.tv_episode_repository.class">Tmdb\Repository\TvEpisodeRepository</parameter>
+        <parameter key="tmdb.tv_season_repository.class">Tmdb\Repository\TvSeasonRepository</parameter>
     </parameters>
 
     <services>
-        <service id="wtfz_tmdb.certification_repository" class="%wtfz_tmdb.certification_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.certification_repository" class="%tmdb.certification_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.changes_repository" class="%wtfz_tmdb.changes_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.changes_repository" class="%tmdb.changes_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.collection_repository" class="%wtfz_tmdb.collection_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.collection_repository" class="%tmdb.collection_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.company_repository" class="%wtfz_tmdb.company_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.company_repository" class="%tmdb.company_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.configuration_repository" class="%wtfz_tmdb.configuration_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.configuration_repository" class="%tmdb.configuration_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.credits_repository" class="%wtfz_tmdb.credits_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.credits_repository" class="%tmdb.credits_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.discovery_repository" class="%wtfz_tmdb.discovery_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.discovery_repository" class="%tmdb.discovery_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.find_repository" class="%wtfz_tmdb.find_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.find_repository" class="%tmdb.find_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.genre_repository" class="%wtfz_tmdb.genre_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.genre_repository" class="%tmdb.genre_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.jobs_repository" class="%wtfz_tmdb.jobs_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.jobs_repository" class="%tmdb.jobs_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.keyword_repository" class="%wtfz_tmdb.keyword_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.keyword_repository" class="%tmdb.keyword_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.list_repository" class="%wtfz_tmdb.list_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.list_repository" class="%tmdb.list_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.movie_repository" class="%wtfz_tmdb.movie_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.movie_repository" class="%tmdb.movie_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.network_repository" class="%wtfz_tmdb.network_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.network_repository" class="%tmdb.network_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.people_repository" class="%wtfz_tmdb.people_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.people_repository" class="%tmdb.people_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.review_repository" class="%wtfz_tmdb.review_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.review_repository" class="%tmdb.review_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.search_repository" class="%wtfz_tmdb.search_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.search_repository" class="%tmdb.search_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.tv_repository" class="%wtfz_tmdb.tv_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.tv_repository" class="%tmdb.tv_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.tv_season_repository" class="%wtfz_tmdb.tv_season_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.tv_season_repository" class="%tmdb.tv_season_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="wtfz_tmdb.tv_episode_repository" class="%wtfz_tmdb.tv_episode_repository.class%">
-            <argument type="service" id="wtfz_tmdb.client" />
+        <service id="tmdb.tv_episode_repository" class="%tmdb.tv_episode_repository.class%">
+            <argument type="service" id="tmdb.client" />
         </service>
     </services>
 

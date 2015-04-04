@@ -1,6 +1,5 @@
 <?php
-
-namespace Wtfz\TmdbBundle;
+namespace Tmdb\Symfony;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
