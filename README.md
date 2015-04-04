@@ -15,7 +15,7 @@ $ sudo mv composer.phar /usr/local/bin/composer
 Add the following to your require block in composer.json config
 
 ```
-"wtfzdotnet/wtfz-tmdb-bundle": "~1.2"
+"php-tmdb/symfony": "~2.0"
 ```
 
 Configuration
