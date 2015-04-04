@@ -49,12 +49,13 @@ you'd have to make your own implementation. We would be happy to intergrate more
 ```yaml
 tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
-    cache:
-        enabled: true
-        #path: "%kernel.cache_dir%/tmdb"
-    log:
-        enabled: true
-        #path: "%kernel.logs_dir%/tmdb.log"
+    options:
+        cache:
+            enabled: true
+            #path: "%kernel.cache_dir%/tmdb"
+        log:
+            enabled: true
+            #path: "%kernel.logs_dir%/tmdb.log"
 ```
 
 __Don't need the repositories?__
