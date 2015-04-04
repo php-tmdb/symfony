@@ -35,7 +35,7 @@ Register the bundle in `app/AppKernel.php`:
 Add to your `app/config/config.yml` the following:
 
 ```yaml
-tmdb:
+tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
 ```
 
@@ -47,7 +47,7 @@ This caching system will adhere to the TMDB API max-age values, if you have diff
 you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
 
 ```yaml
-tmdb:
+tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
     cache:
         enabled: true
@@ -62,7 +62,7 @@ __Don't need the repositories?__
 You can disable repositories :
 
 ```yaml
-tmdb:
+tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
     repositories:
         enabled: false
@@ -73,7 +73,7 @@ __Don't need the twig extension?__
 You can disable the twig extension :
 
 ```yaml
-tmdb:
+tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
     twig_extension:
         enabled: false

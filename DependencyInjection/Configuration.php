@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('tmdb');
+        $rootNode = $treeBuilder->root('tmdb_symfony');
 
         $rootNode
             ->children()
@@ -43,7 +43,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('log')
                             ->canBeEnabled()
                             ->children()
-                                ->scalarNode('level')->defaultValue(Logger::DEBUG)->end()
+                                ->scalarNode('level')->defaultValue('DEBUG')->end()
                                 ->scalarNode('path')->defaultValue('%kernel.logs_dir%/themoviedb.log')->end()
                                 ->scalarNode('handler')->defaultValue(null)->end()
                                 ->scalarNode('subscriber')->defaultValue(null)->end()
