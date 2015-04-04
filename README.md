@@ -58,9 +58,7 @@ tmdb_symfony:
             #path: "%kernel.logs_dir%/tmdb.log"
 ```
 
-__Don't need the repositories?__
-
-You can disable repositories :
+__Disable repositories :__
 
 ```yaml
 tmdb_symfony:
@@ -69,9 +67,7 @@ tmdb_symfony:
         enabled: false
 ```
 
-__Don't need the twig extension?__
-
-You can disable the twig extension :
+__Disable twig extension :__
 
 ```yaml
 tmdb_symfony:
