@@ -1,6 +1,7 @@
 <?php
 namespace Tmdb\SymfonyBundle;
 
+use Doctrine\Common\Cache\Cache;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Tmdb\ConfigurationInterface;
@@ -17,6 +18,11 @@ class ClientConfiguration extends ParameterBag implements ConfigurationInterface
         $this->parameters = $options;
 
         $this->parameters['event_dispatcher'] = $eventDispatcher;
+    }
+
+    public function setCacheHandler(Cache $handler)
+    {
+        $this->parameters['cache']['handler'] = $handler;
     }
 
     /**

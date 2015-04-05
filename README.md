@@ -52,10 +52,31 @@ tmdb_symfony:
     options:
         cache:
             enabled: true
-            #path: "%kernel.cache_dir%/tmdb"
         log:
             enabled: true
             #path: "%kernel.logs_dir%/tmdb.log"
+```
+
+__Configure caching__
+
+First create a new doctrine_cache provider with whatever your method of caching is.
+
+```yaml
+doctrine_cache:
+    providers:
+        tmdb_cache:
+            file_system:
+                directory: %kernel.root_dir%/cache/tmdb
+```
+
+Then update the tmdb configuration with the alias:
+
+```yaml
+tmdb_symfony:
+    options:
+        cache:
+            enabled: true
+            handler: tmdb_cache
 ```
 
 __Disable repositories :__

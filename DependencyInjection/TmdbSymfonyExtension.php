@@ -2,6 +2,7 @@
 
 namespace Tmdb\SymfonyBundle\DependencyInjection;
 
+use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -38,7 +39,7 @@ class TmdbSymfonyExtension extends Extension
         $options = $config['options'];
 
         if ($options['cache']['enabled']) {
-            $options = $this->handleCache($options);
+            $options = $this->handleCache($container, $options);
         }
 
         if ($options['log']['enabled']) {
@@ -48,10 +49,12 @@ class TmdbSymfonyExtension extends Extension
         $container->setParameter('tmdb.options', $options);
     }
 
-    protected function handleCache($options)
+    protected function handleCache(ContainerBuilder $container, $options)
     {
         if (null !== $handler = $options['cache']['handler']) {
-            $options['cache']['handler'] = !is_string($handler) ? $handler: new $handler();
+            $serviceId = sprintf('doctrine_cache.providers.%s', $options['cache']['handler']);
+
+            $container->setAlias('tmdb.cache_handler', new Alias($serviceId, false));
         }
 
         return $options;
