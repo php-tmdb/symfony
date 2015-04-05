@@ -49,17 +49,16 @@ you'd have to make your own implementation. We would be happy to intergrate more
 ```yaml
 tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
-    cache:
-        enabled: true
-        #path: "%kernel.cache_dir%/tmdb"
-    log:
-        enabled: true
-        #path: "%kernel.logs_dir%/tmdb.log"
+    options:
+        cache:
+            enabled: true
+            #path: "%kernel.cache_dir%/tmdb"
+        log:
+            enabled: true
+            #path: "%kernel.logs_dir%/tmdb.log"
 ```
 
-__Don't need the repositories?__
-
-You can disable repositories :
+__Disable repositories :__
 
 ```yaml
 tmdb_symfony:
@@ -68,15 +67,48 @@ tmdb_symfony:
         enabled: false
 ```
 
-__Don't need the twig extension?__
-
-You can disable the twig extension :
+__Disable twig extension :__
 
 ```yaml
 tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
     twig_extension:
         enabled: false
+```
+__Disable https :__
+
+```yaml
+tmdb_symfony:
+    api_key: YOUR_API_KEY_HERE
+    options:
+        secure:
+            enabled: false
+```
+
+__Full configuration with defaults :__
+```yaml
+tmdb_symfony:
+    api_key: YOUR_API_KEY_HERE
+    repositories:
+        enabled: true # Set to false to disable repositories
+    twig_extension:
+        enabled: true # Set to false to disable twig extensions
+    options:
+        adapter: null
+        secure: true # Set to false to disable https
+        host: "api.themoviedb.org/3/"
+        sesion_token: null
+        cache:
+            enabled: true # Set to false to disable cache
+            path: "%kernel.cache_dir%/themoviedb"
+            handler: null
+            suscriber: null
+        log:
+            enabled: false # Set to true to enable log
+            path: "%kernel.logs_dir%/themoviedb.log"
+            level: DEBUG
+            handler: null
+            suscriber: null
 ```
 
 Usage
