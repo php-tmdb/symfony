@@ -39,7 +39,7 @@ tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
 ```
 
-That's all! Fire away!
+Read below how to setup the cache proplery, from there on that will be all that is required! Fire away!
 
 __Want to make use of default caching and/or logging?__
 
