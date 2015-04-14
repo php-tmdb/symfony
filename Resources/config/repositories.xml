@@ -13,11 +13,7 @@
         <parameter key="tmdb.company_repository.class">Tmdb\Repository\CompanyRepository</parameter>
         <parameter key="tmdb.configuration_repository.class">Tmdb\Repository\ConfigurationRepository</parameter>
         <parameter key="tmdb.credits_repository.class">Tmdb\Repository\CreditsRepository</parameter>
-<<<<<<< HEAD
         <parameter key="tmdb.discover_repository.class">Tmdb\Repository\DiscoverRepository</parameter>
-=======
-        <parameter key="tmdb.discovery_repository.class">Tmdb\Repository\DiscoveryRepository</parameter>
->>>>>>> 08cc2bfb0a43509d0905ec0127f1b3dc5faf9c89
         <parameter key="tmdb.find_repository.class">Tmdb\Repository\FindRepository</parameter>
         <parameter key="tmdb.genre_repository.class">Tmdb\Repository\GenreRepository</parameter>
         <parameter key="tmdb.jobs_repository.class">Tmdb\Repository\JobsRepository</parameter>

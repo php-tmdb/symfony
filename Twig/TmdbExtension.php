@@ -1,8 +1,9 @@
 <?php
-namespace Tmdb\Symfony\Twig;
+namespace Tmdb\SymfonyBundle\Twig;
 
 use Tmdb\Client;
 use Tmdb\Helper\ImageHelper;
+use Tmdb\Model\Configuration;
 use Tmdb\Model\Image;
 use Tmdb\Repository\ConfigurationRepository;
 
@@ -14,12 +15,14 @@ class TmdbExtension extends \Twig_Extension
 
     private $configuration;
 
-    public function __construct(Client $client)
+    public function __construct(Client $client, Configuration $config = null)
     {
         $this->client = $client;
 
-        $repository = new ConfigurationRepository($client);
-        $config     = $repository->load();
+        if (!$config) {
+            $repository = new ConfigurationRepository($client);
+            $config     = $repository->load();
+        }
 
         $this->helper = new ImageHelper($config);
     }

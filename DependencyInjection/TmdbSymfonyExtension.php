@@ -1,6 +1,6 @@
 <?php
 
-namespace Tmdb\Symfony\DependencyInjection;
+namespace Tmdb\SymfonyBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

@@ -16,7 +16,11 @@
         "symfony/symfony": "~2.3",
         "php-tmdb/api": "~2.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1",
+        "monolog/monolog": ">=1.11.0"
+    },
     "autoload": {
-        "psr-4": { "Tmdb\\Symfony\\": "" }
+        "psr-4": { "Tmdb\\SymfonyBundle\\": "" }
     }
 }

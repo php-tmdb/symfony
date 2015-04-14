@@ -1,0 +1,37 @@
+language: php
+
+php:
+    - 5.4
+    - 5.5
+    - 5.6
+    - hhvm
+
+env:
+  - SYMFONY_VERSION=2.6.*
+
+matrix:
+  include:
+    - php: 5.6
+      env: SYMFONY_VERSION=2.0.*
+    - php: 5.6
+      env: SYMFONY_VERSION=2.1.*
+    - php: 5.6
+      env: SYMFONY_VERSION=2.2.*
+    - php: 5.6
+      env: SYMFONY_VERSION=2.3.*
+    - php: 5.6
+      env: SYMFONY_VERSION=2.4.*
+    - php: 5.6
+      env: SYMFONY_VERSION=2.5.*
+    - php: 5.6
+      env: SYMFONY_VERSION=2.7.*@dev
+
+before_script:
+  - composer self-update
+  - composer require symfony/symfony:${SYMFONY_VERSION} --prefer-source
+
+script: phpunit --coverage-text --coverage-clover=coverage.clover --verbose
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover

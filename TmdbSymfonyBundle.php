@@ -1,6 +1,6 @@
 <?php
 
-namespace Tmdb\Symfony;
+namespace Tmdb\SymfonyBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
