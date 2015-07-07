@@ -118,18 +118,18 @@ tmdb_symfony:
         adapter: null
         secure: true # Set to false to disable https
         host: "api.themoviedb.org/3/"
-        sesion_token: null
+        session_token: null
         cache:
             enabled: true # Set to false to disable cache
             path: "%kernel.cache_dir%/themoviedb"
             handler: null
-            suscriber: null
+            subscriber: null
         log:
             enabled: false # Set to true to enable log
             path: "%kernel.logs_dir%/themoviedb.log"
             level: DEBUG
             handler: null
-            suscriber: null
+            subscriber: null
 ```
 
 Usage
