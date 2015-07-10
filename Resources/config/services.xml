@@ -30,7 +30,7 @@
             <argument>%tmdb.options%</argument>
 
             <call method="setCacheHandler">
-                <argument type="service" id="tmdb.cache_handler" />
+                <argument type="service" id="tmdb.cache_handler" on-invalid="null" />
             </call>
         </service>
     </services>
