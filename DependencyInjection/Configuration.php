@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('repositories')->canBeDisabled()->end()
                 ->arrayNode('twig_extension')->canBeDisabled()->end()
                 ->arrayNode('options')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('adapter')->defaultValue(null)->end()
                         ->scalarNode('secure')->defaultValue(true)->end()
