@@ -39,27 +39,9 @@ tmdb_symfony:
     api_key: YOUR_API_KEY_HERE
 ```
 
-Read below how to setup the cache proplery, from there on that will be all that is required! Fire away!
-
-__Want to make use of default caching and/or logging?__
-
-This caching system will adhere to the TMDB API max-age values, if you have different needs like long TTL's
-you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
-
-```yaml
-tmdb_symfony:
-    api_key: YOUR_API_KEY_HERE
-    options:
-        cache:
-            enabled: true
-        log:
-            enabled: true
-            #path: "%kernel.logs_dir%/tmdb.log"
-```
-
 __Configure caching__
 
-First create a new doctrine_cache provider with whatever your method of caching is.
+First create a new doctrine_cache provider with a caching provider of your preference.
 
 ```yaml
 doctrine_cache:
@@ -77,6 +59,22 @@ tmdb_symfony:
         cache:
             enabled: true
             handler: tmdb_cache
+```
+
+This caching system will adhere to the TMDB API max-age values, if you have different needs like long TTL's
+you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
+
+__Want to make use of logging?__
+
+```yaml
+tmdb_symfony:
+    api_key: YOUR_API_KEY_HERE
+    options:
+        cache:
+            enabled: true
+        log:
+            enabled: true
+            #path: "%kernel.logs_dir%/tmdb.log"
 ```
 
 __Disable repositories :__
