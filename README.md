@@ -25,12 +25,23 @@ Register the bundle in `app/AppKernel.php`:
 ```php
     public function registerBundles()
     {
-        $bundles = array(
         ...
-        new Tmdb\SymfonyBundle\TmdbSymfonyBundle(),
+        new Tmdb\SymfonyBundle\TmdbSymfonyBundle()
         ...
     }
 ```
+
+If you haven't had the DoctrineCacheBundle yet, also register it:
+
+```php
+    public function registerBundles()
+    {
+        ...
+        new \Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle()
+        ...
+    }
+```
+
 
 Add to your `app/config/config.yml` the following:
 
