@@ -23,7 +23,7 @@
         "twig/twig": "~1.11|~2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.2",
+        "phpunit/phpunit": "^4.8",
         "symfony/framework-bundle": ">=2.3,<4"
     },
     "autoload": {
