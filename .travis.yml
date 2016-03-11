@@ -7,6 +7,10 @@ php:
   - nightly
   - hhvm
 
+cache:
+  directories:
+    - ~/.composer/cache
+
 before_script:
   - composer self-update
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require --no-update symfony/config:${SYMFONY_VERSION} symfony/dependency-injection:${SYMFONY_VERSION} symfony/event-dispatcher:${SYMFONY_VERSION} symfony/http-kernel:${SYMFONY_VERSION} symfony/framework-bundle:${SYMFONY_VERSION}; fi;
