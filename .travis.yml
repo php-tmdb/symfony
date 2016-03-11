@@ -16,7 +16,7 @@ before_script:
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require --no-update symfony/config:${SYMFONY_VERSION} symfony/dependency-injection:${SYMFONY_VERSION} symfony/event-dispatcher:${SYMFONY_VERSION} symfony/http-kernel:${SYMFONY_VERSION} symfony/framework-bundle:${SYMFONY_VERSION}; fi;
   - composer install --no-interaction --prefer-source --dev
 
-script: phpunit --coverage-text --verbose
+script: phpunit --verbose
 
 matrix:
   include:
