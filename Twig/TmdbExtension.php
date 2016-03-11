@@ -8,20 +8,19 @@ use Tmdb\Repository\ConfigurationRepository;
 
 class TmdbExtension extends \Twig_Extension
 {
+    /**
+     * @var ImageHelper|null
+     */
     private $helper;
 
+    /**
+     * @var Client
+     */
     private $client;
-
-    private $configuration;
 
     public function __construct(Client $client)
     {
         $this->client = $client;
-
-        $repository = new ConfigurationRepository($client);
-        $config     = $repository->load();
-
-        $this->helper = new ImageHelper($config);
     }
 
     public function getFilters()
@@ -34,12 +33,12 @@ class TmdbExtension extends \Twig_Extension
 
     public function getHtml($image, $size = 'original', $width = null, $height = null)
     {
-        return $this->helper->getHtml($image, $size, $width, $height);
+        return $this->getHelper()->getHtml($image, $size, $width, $height);
     }
 
     public function getUrl($image)
     {
-        return $this->helper->getUrl($image);
+        return $this->getHelper()->getUrl($image);
     }
 
     public function getName()
@@ -67,25 +66,6 @@ class TmdbExtension extends \Twig_Extension
     }
 
     /**
-     * @param  mixed $configuration
-     * @return $this
-     */
-    public function setConfiguration($configuration)
-    {
-        $this->configuration = $configuration;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getConfiguration()
-    {
-        return $this->configuration;
-    }
-
-    /**
      * @param  ImageHelper $helper
      * @return $this
      */
@@ -101,6 +81,15 @@ class TmdbExtension extends \Twig_Extension
      */
     public function getHelper()
     {
+        if ($this->helper) {
+            return $this->helper;
+        }
+
+        $repository = new ConfigurationRepository($this->client);
+        $config     = $repository->load();
+
+        $this->helper = new ImageHelper($config);
+
         return $this->helper;
     }
 }
