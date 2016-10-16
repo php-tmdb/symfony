@@ -36,9 +36,9 @@ class TmdbExtension extends \Twig_Extension
         return $this->getHelper()->getHtml($image, $size, $width, $height);
     }
 
-    public function getUrl($image)
+    public function getUrl($image, $size = 'original')
     {
-        return $this->getHelper()->getUrl($image);
+        return $this->getHelper()->getUrl($image, $size);
     }
 
     public function getName()
