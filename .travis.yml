@@ -2,10 +2,7 @@ sudo: false
 language: php
 
 php:
-  - 5.4
-  - 5.5
   - nightly
-  - hhvm
 
 cache:
   directories:
@@ -22,22 +19,29 @@ script: phpunit --verbose
 matrix:
   include:
     - php: 5.6
-      env: [SYMFONY_VERSION="2.3.*", SYMFONY_EVENT_DISPATCHER_VERSION="2.4.*"]
-    - php: 5.6
       env: [SYMFONY_VERSION="2.7.*"]
     - php: 5.6
       env: [SYMFONY_VERSION="2.8.*"]
     - php: 5.6
       env: [SYMFONY_VERSION="3.0.*"]
-    - php: 7.0
-      env: [SYMFONY_VERSION="2.3.*", SYMFONY_EVENT_DISPATCHER_VERSION="2.4.*"]
+    - php: 5.6
+      env: [SYMFONY_VERSION="3.1.*"]
     - php: 7.0
       env: [SYMFONY_VERSION="2.7.*"]
     - php: 7.0
       env: [SYMFONY_VERSION="2.8.*"]
     - php: 7.0
       env: [SYMFONY_VERSION="3.0.*"]
+    - php: 7.0
+      env: [SYMFONY_VERSION="3.1.*"]
+    - php: 7.1
+      env: [SYMFONY_VERSION="2.7.*"]
+    - php: 7.1
+      env: [SYMFONY_VERSION="2.8.*"]
+    - php: 7.1
+      env: [SYMFONY_VERSION="3.0.*"]
+    - php: 7.1
+      env: [SYMFONY_VERSION="3.1.*"]
   allow_failures:
     - php: nightly
-    - php: hhvm
   fast_finish: true
