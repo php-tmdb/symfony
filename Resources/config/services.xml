@@ -26,7 +26,7 @@
         </service>
 
         <service id="tmdb.configuration" class="%tmdb.client_configuration.class%" public="false">
-            <argument key="event_dispatcher" type="service" id="event_dispatcher" />
+            <argument type="service" id="event_dispatcher" />
             <argument>%tmdb.options%</argument>
 
             <call method="setCacheHandler">
