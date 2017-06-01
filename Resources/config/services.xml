@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
         <!-- Options parameters -->
@@ -26,7 +26,7 @@
         </service>
 
         <service id="tmdb.configuration" class="%tmdb.client_configuration.class%" public="false">
-            <argument key="event_dispatcher" type="service" id="event_dispatcher" />
+            <argument type="service" id="event_dispatcher" />
             <argument>%tmdb.options%</argument>
 
             <call method="setCacheHandler">
