@@ -18,12 +18,12 @@
         "symfony/dependency-injection": ">=2.3,<4",
         "symfony/event-dispatcher": ">=2.3,<4",
         "symfony/http-kernel": ">=2.3,<4",
-        "doctrine/doctrine-cache-bundle": "~1.0",
+        "doctrine/doctrine-cache-bundle": "^1.0",
         "php-tmdb/api": "^2.0.14",
-        "twig/twig": "~1.11|~2.0"
+        "twig/twig": "^1.11|^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit": "^4.8||^5.0,<5.4",
         "symfony/framework-bundle": ">=2.3,<4"
     },
     "autoload": {
