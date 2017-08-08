@@ -69,7 +69,7 @@ tmdb_symfony:
 ```
 
 This caching system will adhere to the TMDB API max-age values, if you have different needs like long TTL's
-you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
+you'd have to make your own implementation. We would be happy to integrate more options, so please contribute.
 
 __Want to make use of logging?__
 
