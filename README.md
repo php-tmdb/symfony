@@ -59,7 +59,7 @@ doctrine_cache:
     providers:
         tmdb_cache:
             file_system:
-                directory: %kernel.root_dir%/cache/tmdb
+                directory: %kernel.cache_dir%/tmdb
 ```
 
 Then update the tmdb configuration with the alias:
