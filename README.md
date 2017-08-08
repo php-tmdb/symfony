@@ -12,10 +12,10 @@ $ curl -sS https://getcomposer.org/installer | php
 $ sudo mv composer.phar /usr/local/bin/composer
 ```
 
-Add the following to your require block in composer.json config
+Then require the package:
 
 ```
-"php-tmdb/symfony": "~2.0"
+composer require php-tmdb/symfony
 ```
 
 Configuration
