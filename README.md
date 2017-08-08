@@ -5,12 +5,8 @@ A Symfony2 Bundle for use together with the [php-tmdb/api](https://github.com/ph
 
 Installation
 ------------
-Install Composer
 
-```
-$ curl -sS https://getcomposer.org/installer | php
-$ sudo mv composer.phar /usr/local/bin/composer
-```
+[Install Composer](https://getcomposer.org/doc/00-intro.md)
 
 Then require the package:
 
