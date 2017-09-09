@@ -17,7 +17,7 @@ before_script:
   - if [ "$SYMFONY_EVENT_DISPATCHER_VERSION" != "" ]; then composer require --no-update symfony/event-dispatcher:${SYMFONY_EVENT_DISPATCHER_VERSION}; fi;
   - composer install --no-interaction --prefer-source --dev
 
-script: phpunit --verbose
+script: vendor/bin/phpunit --verbose
 
 matrix:
   include:
