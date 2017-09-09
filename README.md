@@ -1,21 +1,17 @@
 Description
 ----------------
 
-A Symfony2 Bundle for use together with the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB Wrapper.
+A Symfony Bundle for use together with the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB API Wrapper.
 
 Installation
 ------------
-Install Composer
+
+[Install Composer](https://getcomposer.org/doc/00-intro.md)
+
+Then require the package:
 
 ```
-$ curl -sS https://getcomposer.org/installer | php
-$ sudo mv composer.phar /usr/local/bin/composer
-```
-
-Add the following to your require block in composer.json config
-
-```
-"php-tmdb/symfony": "~2.0"
+composer require php-tmdb/symfony
 ```
 
 Configuration
@@ -59,7 +55,7 @@ doctrine_cache:
     providers:
         tmdb_cache:
             file_system:
-                directory: %kernel.root_dir%/cache/tmdb
+                directory: %kernel.cache_dir%/tmdb
 ```
 
 Then update the tmdb configuration with the alias:
@@ -73,7 +69,7 @@ tmdb_symfony:
 ```
 
 This caching system will adhere to the TMDB API max-age values, if you have different needs like long TTL's
-you'd have to make your own implementation. We would be happy to intergrate more options, so please contribute.
+you'd have to make your own implementation. We would be happy to integrate more options, so please contribute.
 
 __Want to make use of logging?__
 
