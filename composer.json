@@ -2,9 +2,9 @@
     "name": "php-tmdb/symfony",
     "license": "MIT",
     "type": "symfony-bundle",
-    "description": "Symfony2 Bundle for TMDB ( The Movie Database ) API. Provides easy access to the php-tmdb/api library.",
+    "description": "Symfony Bundle for TMDB (The Movie Database) API. Provides easy access to the php-tmdb/api library.",
     "homepage": "https://github.com/wtfzdotnet/php-tmdb-api",
-    "keywords": ["tmdb", "api", "php","wrapper", "movie", "tv", "tv show", "tvdb", "symfony", "symfony2"],
+    "keywords": ["tmdb", "api", "php","wrapper", "movie", "cinema", "tv", "tv show", "tvdb", "symfony", "symfony2", "symfony3"],
     "authors": [
         {
             "name": "Michael Roterman",
