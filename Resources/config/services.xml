@@ -16,7 +16,7 @@
     </parameters>
 
     <services>
-        <service id="tmdb.client" class="%tmdb.client.class%">
+        <service id="tmdb.client" class="%tmdb.client.class%" public="true">
             <argument type="service" id="tmdb.api_token" />
             <argument type="service" id="tmdb.configuration" />
         </service>

@@ -19,12 +19,7 @@ final class TmdbSymfonyExtensionTest extends TestCase
 
         /** @var Container $container */
         $container = $kernel->getContainer();
-        $tmdbServiceIds = array_filter($container->getServiceIds(), function ($id) {
-            return strpos($id, 'tmdb') === 0;
-        });
-
-        foreach ($tmdbServiceIds as $serviceId) {
-            $container->get($serviceId);
-        }
+        $this->assertInstanceOf('Tmdb\Client', $container->get('tmdb.client'));
+        $this->assertInstanceOf('Tmdb\Repository\MovieRepository', $container->get('tmdb.movie_repository'));
     }
 }
