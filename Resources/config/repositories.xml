@@ -30,83 +30,83 @@
     </parameters>
 
     <services>
-        <service id="tmdb.certification_repository" class="%tmdb.certification_repository.class%">
+        <service id="tmdb.certification_repository" class="%tmdb.certification_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.changes_repository" class="%tmdb.changes_repository.class%">
+        <service id="tmdb.changes_repository" class="%tmdb.changes_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.collection_repository" class="%tmdb.collection_repository.class%">
+        <service id="tmdb.collection_repository" class="%tmdb.collection_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.company_repository" class="%tmdb.company_repository.class%">
+        <service id="tmdb.company_repository" class="%tmdb.company_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.configuration_repository" class="%tmdb.configuration_repository.class%">
+        <service id="tmdb.configuration_repository" class="%tmdb.configuration_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.credits_repository" class="%tmdb.credits_repository.class%">
+        <service id="tmdb.credits_repository" class="%tmdb.credits_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.discover_repository" class="%tmdb.discover_repository.class%">
+        <service id="tmdb.discover_repository" class="%tmdb.discover_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.find_repository" class="%tmdb.find_repository.class%">
+        <service id="tmdb.find_repository" class="%tmdb.find_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.genre_repository" class="%tmdb.genre_repository.class%">
+        <service id="tmdb.genre_repository" class="%tmdb.genre_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.jobs_repository" class="%tmdb.jobs_repository.class%">
+        <service id="tmdb.jobs_repository" class="%tmdb.jobs_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.keyword_repository" class="%tmdb.keyword_repository.class%">
+        <service id="tmdb.keyword_repository" class="%tmdb.keyword_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.list_repository" class="%tmdb.list_repository.class%">
+        <service id="tmdb.list_repository" class="%tmdb.list_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.movie_repository" class="%tmdb.movie_repository.class%">
+        <service id="tmdb.movie_repository" class="%tmdb.movie_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.network_repository" class="%tmdb.network_repository.class%">
+        <service id="tmdb.network_repository" class="%tmdb.network_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.people_repository" class="%tmdb.people_repository.class%">
+        <service id="tmdb.people_repository" class="%tmdb.people_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.review_repository" class="%tmdb.review_repository.class%">
+        <service id="tmdb.review_repository" class="%tmdb.review_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.search_repository" class="%tmdb.search_repository.class%">
+        <service id="tmdb.search_repository" class="%tmdb.search_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.tv_repository" class="%tmdb.tv_repository.class%">
+        <service id="tmdb.tv_repository" class="%tmdb.tv_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.tv_season_repository" class="%tmdb.tv_season_repository.class%">
+        <service id="tmdb.tv_season_repository" class="%tmdb.tv_season_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
 
-        <service id="tmdb.tv_episode_repository" class="%tmdb.tv_episode_repository.class%">
+        <service id="tmdb.tv_episode_repository" class="%tmdb.tv_episode_repository.class%" public="true">
             <argument type="service" id="tmdb.client" />
         </service>
     </services>
