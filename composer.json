@@ -18,6 +18,7 @@
         "symfony/dependency-injection": "^4.3.7 || ^5.0",
         "symfony/event-dispatcher": "^4.3.7 || ^5.0",
         "symfony/http-kernel": "^4.3.7 || ^5.0",
+        "symfony/yaml": "^4.3.7 || ^5.0",
         "php-tmdb/api": "^3.0",
         "twig/twig": "^1.11|^2.0"
     },
