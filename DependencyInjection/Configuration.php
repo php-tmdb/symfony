@@ -18,8 +18,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('tmdb_symfony');
+        $treeBuilder = new TreeBuilder('tmdb_symfony');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
