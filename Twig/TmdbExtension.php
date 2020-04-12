@@ -3,10 +3,11 @@ namespace Tmdb\SymfonyBundle\Twig;
 
 use Tmdb\Client;
 use Tmdb\Helper\ImageHelper;
-use Tmdb\Model\Image;
 use Tmdb\Repository\ConfigurationRepository;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
-class TmdbExtension extends \Twig_Extension
+class TmdbExtension extends AbstractExtension
 {
     /**
      * @var ImageHelper|null
@@ -26,8 +27,8 @@ class TmdbExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('tmdb_image_html', array($this, 'getHtml')),
-            new \Twig_SimpleFilter('tmdb_image_url', array($this, 'getUrl')),
+            new TwigFilter('tmdb_image_html', array($this, 'getHtml')),
+            new TwigFilter('tmdb_image_url', array($this, 'getUrl')),
         );
     }
 
