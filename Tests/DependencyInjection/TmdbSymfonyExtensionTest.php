@@ -2,7 +2,7 @@
 
 namespace Tmdb\SymfonyBundle\Tests\DependencyInjection;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Container;
 use Tmdb\SymfonyBundle\Tests\TestKernel;
 
