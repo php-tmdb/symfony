@@ -26,6 +26,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('api_key')->isRequired()->cannotBeEmpty()->end()
                 ->arrayNode('repositories')->canBeDisabled()->end()
                 ->arrayNode('twig_extension')->canBeDisabled()->end()
+                ->booleanNode('disable_legacy_aliases')->defaultFalse()->end()
                 ->arrayNode('options')
                     ->addDefaultsIfNotSet()
                     ->children()

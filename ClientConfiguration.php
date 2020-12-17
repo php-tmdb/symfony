@@ -15,9 +15,9 @@ class ClientConfiguration extends ParameterBag implements ConfigurationInterface
         EventDispatcherInterface $eventDispatcher,
         array $options = []
     ){
-        $this->parameters = $options;
+        $options['event_dispatcher'] = $eventDispatcher;
 
-        $this->parameters['event_dispatcher'] = $eventDispatcher;
+        parent::__construct($options);
     }
 
     public function setCacheHandler(Cache $handler = null)

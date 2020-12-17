@@ -4,28 +4,17 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <!-- Options parameters -->
-        <parameter key="tmdb.api_key" />
-        <!-- Main classes -->
-        <parameter key="tmdb.client.class">Tmdb\Client</parameter>
-        <parameter key="tmdb.client_configuration.class">Tmdb\SymfonyBundle\ClientConfiguration</parameter>
-        <parameter key="tmdb.api_token.class">Tmdb\ApiToken</parameter>
-        <parameter key="tmdb.request_token.class">Tmdb\RequestToken</parameter>
-        <parameter key="tmdb.session_token.class">Tmdb\SessionToken</parameter>
-    </parameters>
-
     <services>
-        <service id="tmdb.client" class="%tmdb.client.class%" public="true">
-            <argument type="service" id="tmdb.api_token" />
-            <argument type="service" id="tmdb.configuration" />
+        <service id="Tmdb\Client" public="true">
+            <argument type="service" id="Tmdb\ApiToken" />
+            <argument type="service" id="Tmdb\SymfonyBundle\ClientConfiguration" />
         </service>
 
-        <service id="tmdb.api_token" class="%tmdb.api_token.class%" public="false">
+        <service id="Tmdb\ApiToken" public="false">
             <argument>%tmdb.api_key%</argument>
         </service>
 
-        <service id="tmdb.configuration" class="%tmdb.client_configuration.class%" public="false">
+        <service id="Tmdb\SymfonyBundle\ClientConfiguration" public="false">
             <argument type="service" id="event_dispatcher" />
             <argument>%tmdb.options%</argument>
 

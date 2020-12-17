@@ -111,6 +111,16 @@ tmdb_symfony:
             enabled: false
 ```
 
+__Disable legacy aliases :__
+
+_Set to true to remove all legacy alises ( e.g. `tmdb.client` or `tmdb.movie_repository` )._
+
+```yaml
+tmdb_symfony:
+    api_key: YOUR_API_KEY_HERE
+    disable_legacy_aliases: true
+```
+
 __Full configuration with defaults :__
 ```yaml
 tmdb_symfony:
@@ -119,6 +129,7 @@ tmdb_symfony:
         enabled: true # Set to false to disable repositories
     twig_extension:
         enabled: true # Set to false to disable twig extensions
+    disable_legacy_aliases: false # Set to true to remove all legacy alises ( e.g. `tmdb.client` or `tmdb.movie_repository` )
     options:
         adapter: null
         secure: true # Set to false to disable https
@@ -143,13 +154,13 @@ Usage
 Obtaining the client
 
 ```php
-$client = $this->get('tmdb.client');
+$client = $this->get(Tmdb\Client::class);
 ```
 
 Obtaining repositories
 
 ```php
-$movie = $this->get('tmdb.movie_repository')->load(13);
+$movie = $this->get(\Tmdb\Repository\MovieRepository::class)->load(13);
 ```
 
 An overview of all the repositories can be found in the services configuration [repositories.xml](https://github.com/php-tmdb/symfony/blob/master/Resources/config/repositories.xml).
