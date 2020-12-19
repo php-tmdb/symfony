@@ -33,8 +33,14 @@ jobs:
       - name: "Install dependencies with Composer"
         run: "composer update --no-interaction --no-progress --prefer-dist --prefer-stable"
 
-      - name: "Run PHP_CodeSniffer"
-        run: "vendor/bin/phpcs -q --no-colors --report=checkstyle | cs2pr"
+      - name: "Install git-phpcs"
+        run: "wget https://github.com/diff-sniffer/git/releases/download/0.3.2/git-phpcs.phar"
+
+      - name: "Fetch head branch"
+        run: "git remote set-branches --add origin $GITHUB_BASE_REF && git fetch origin $GITHUB_BASE_REF"
+
+      - name: "Run git-phpcs"
+        run: "php git-phpcs.phar origin/$GITHUB_BASE_REF...$GITHUB_SHA --report=checkstyle | cs2pr"
 
       - name: "Run PHPStan"
         run: "vendor/bin/phpstan analyse --error-format=checkstyle | cs2pr"
