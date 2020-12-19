@@ -91,7 +91,7 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Alias mapping for legacy constructs; public to abuse within test suite.
      *
-     * @return \string[][]
+     * @return array|string[][]
      */
     public function getLegacyAliasMapping()
     {
@@ -134,7 +134,7 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Performs mapping of legacy aliases to their new service identifiers.
      *
-     * @param $container
+     * @param ContainerBuilder $container
      * @param array $mapping
      *
      * @return void
@@ -190,10 +190,10 @@ class TmdbSymfonyExtension extends Extension
      * Handle cache
      *
      * @param ContainerBuilder $container
-     * @param $options
+     * @param array $options
      * @return mixed
      */
-    protected function handleCache(ContainerBuilder $container, $options)
+    protected function handleCache(ContainerBuilder $container, array $options)
     {
         if (null !== $handler = $options['cache']['handler']) {
             $serviceId = sprintf('doctrine_cache.providers.%s', $options['cache']['handler']);
@@ -207,10 +207,10 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Handle log
      *
-     * @param $options
-     * @return mixed
+     * @param array $options
+     * @return array
      */
-    protected function handleLog($options)
+    protected function handleLog(array $options)
     {
         if (null !== $handler = $options['log']['handler']) {
             $options['log']['handler'] = !is_string($handler) ? $handler : new $handler();
