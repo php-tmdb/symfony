@@ -31,6 +31,7 @@
     "require-dev": {
         "slevomat/coding-standard": "^6.4.1",
         "squizlabs/php_codesniffer": "^3.5.8",
+        "phpstan/phpstan": "^0.12.18",
         "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
         "symfony/framework-bundle": "^4.3.7 || ^5.0"
     },
