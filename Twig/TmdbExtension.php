@@ -1,4 +1,5 @@
 <?php
+
 namespace Tmdb\SymfonyBundle\Twig;
 
 use Tmdb\Client;
