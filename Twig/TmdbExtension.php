@@ -20,6 +20,10 @@ class TmdbExtension extends AbstractExtension
      */
     private $client;
 
+    /**
+     * TmdbExtension constructor.
+     * @param Client $client
+     */
     public function __construct(Client $client)
     {
         $this->client = $client;
@@ -48,21 +52,29 @@ class TmdbExtension extends AbstractExtension
         return $this->getHelper()->getHtml($image, $size, $width, $height);
     }
 
-    public function getUrl($image, $size = 'original'): string
+    /**
+     * @param string $image
+     * @param string $size
+     * @return string
+     */
+    public function getUrl(string $image, string $size = 'original'): string
     {
         return $this->getHelper()->getUrl($image, $size);
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return 'tmdb_extension';
     }
 
     /**
-     * @param  null  $client
+     * @param  Client  $client
      * @return $this
      */
-    public function setClient($client)
+    public function setClient(Client $client)
     {
         $this->client = $client;
 
@@ -70,9 +82,9 @@ class TmdbExtension extends AbstractExtension
     }
 
     /**
-     * @return Client
+     * @return Client|null
      */
-    public function getClient(): Client
+    public function getClient(): ?Client
     {
         return $this->client;
     }

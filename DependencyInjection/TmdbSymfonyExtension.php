@@ -41,8 +41,8 @@ use Tmdb\SymfonyBundle\Twig\TmdbExtension;
 class TmdbSymfonyExtension extends Extension
 {
     /**
-     * {@inheritDoc}
-     *
+     * @param array<array> $configs
+     * @param ContainerBuilder $container
      * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
@@ -91,7 +91,7 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Alias mapping for legacy constructs; public to abuse within test suite.
      *
-     * @return array|string[][]
+     * @return array<array>
      */
     public function getLegacyAliasMapping()
     {
@@ -135,7 +135,7 @@ class TmdbSymfonyExtension extends Extension
      * Performs mapping of legacy aliases to their new service identifiers.
      *
      * @param ContainerBuilder $container
-     * @param array $mapping
+     * @param array<string> $mapping
      *
      * @return void
      */
@@ -190,8 +190,8 @@ class TmdbSymfonyExtension extends Extension
      * Handle cache
      *
      * @param ContainerBuilder $container
-     * @param array $options
-     * @return mixed
+     * @param array<array> $options
+     * @return array<array>
      */
     protected function handleCache(ContainerBuilder $container, array $options)
     {
@@ -207,10 +207,10 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Handle log
      *
-     * @param array $options
-     * @return array
+     * @param array<array> $options
+     * @return array<array>
      */
-    protected function handleLog(array $options)
+    protected function handleLog(array $options): array
     {
         if (null !== $handler = $options['log']['handler']) {
             $options['log']['handler'] = !is_string($handler) ? $handler : new $handler();

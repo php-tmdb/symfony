@@ -11,7 +11,7 @@ class ClientConfiguration extends ParameterBag implements ConfigurationInterface
 {
     /**
      * @param EventDispatcherInterface $eventDispatcher
-     * @param array $options
+     * @param array<string> $options
      */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
@@ -22,13 +22,16 @@ class ClientConfiguration extends ParameterBag implements ConfigurationInterface
         parent::__construct($options);
     }
 
+    /**
+     * @param Cache|null $handler
+     */
     public function setCacheHandler(Cache $handler = null): void
     {
         $this->parameters['cache']['handler'] = $handler;
     }
 
     /**
-     * @return array
+     * @return array<string>
      */
     public function all()
     {
