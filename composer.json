@@ -17,9 +17,9 @@
         "doctrine/doctrine-cache-bundle": "^1.0",
         "php-tmdb/api": "^3.0",
         "symfony/config": "^4.3.7 || ^5.0",
-        "symfony/dependency-injection": "^4.3.7 || ^5.0",
-        "symfony/event-dispatcher": "^4.3.7 || ^5.0",
-        "symfony/http-kernel": "^4.3.7 || ^5.1.5",
+        "symfony/dependency-injection": "^4.3.7,<6",
+        "symfony/event-dispatcher": "^4.3.7,<6",
+        "symfony/http-kernel": "^4.3.7,<6",
         "symfony/phpunit-bridge": "^4.2",
         "symfony/yaml": "^4.3.7 || ^5.0",
         "twig/twig": "^2.0|^3.0"
