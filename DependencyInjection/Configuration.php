@@ -1,4 +1,5 @@
 <?php
+
 namespace Tmdb\SymfonyBundle\DependencyInjection;
 
 use Monolog\Logger;

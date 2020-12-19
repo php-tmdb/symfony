@@ -1,0 +1,10 @@
+parameters:
+    level: 2
+    inferPrivatePropertyTypeFromConstructor: true
+    ignoreErrors:
+        - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children\(\)\.#'
+    paths:
+      - .
+    excludes_analyse:
+      - Tests
+      - vendor

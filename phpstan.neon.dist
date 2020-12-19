@@ -1,9 +1,0 @@
-includes:
-    - phpstan-baseline.neon
-
-parameters:
-    level: 2
-    inferPrivatePropertyTypeFromConstructor: true
-    paths:
-      - DependencyInjection
-      - Twig

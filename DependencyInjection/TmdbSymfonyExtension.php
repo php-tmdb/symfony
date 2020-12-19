@@ -41,7 +41,9 @@ use Tmdb\SymfonyBundle\Twig\TmdbExtension;
 class TmdbSymfonyExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * @param array<array> $configs
+     * @param ContainerBuilder $container
+     * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -89,7 +91,7 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Alias mapping for legacy constructs; public to abuse within test suite.
      *
-     * @return \string[][]
+     * @return array<array>
      */
     public function getLegacyAliasMapping()
     {
@@ -132,10 +134,12 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Performs mapping of legacy aliases to their new service identifiers.
      *
-     * @param $container
-     * @param array $mapping
+     * @param ContainerBuilder $container
+     * @param array<string> $mapping
+     *
+     * @return void
      */
-    protected function performAliasMapping($container, array $mapping = [])
+    protected function performAliasMapping(ContainerBuilder $container, array $mapping = []): void
     {
         foreach ($mapping as $legacyAlias => $newAlias) {
             // @todo fix alias with public/private properties
@@ -147,8 +151,10 @@ class TmdbSymfonyExtension extends Extension
      * Handle general lgeacy aliases.
      *
      * @param ContainerBuilder $container
+     *
+     * @return void
      */
-    protected function handleLegacyGeneralAliases(ContainerBuilder $container)
+    protected function handleLegacyGeneralAliases(ContainerBuilder $container): void
     {
         $mapping = $this->getLegacyAliasMapping();
         $this->performAliasMapping($container, $mapping['general']);
@@ -158,8 +164,10 @@ class TmdbSymfonyExtension extends Extension
      * Map repository legacy aliases
      *
      * @param ContainerBuilder $container
+     *
+     * @return void
      */
-    protected function handleLegacyRepositoryAliases(ContainerBuilder $container)
+    protected function handleLegacyRepositoryAliases(ContainerBuilder $container): void
     {
         $mapping = $this->getLegacyAliasMapping();
         $this->performAliasMapping($container, $mapping['repositories']);
@@ -169,8 +177,10 @@ class TmdbSymfonyExtension extends Extension
      * Map twig legacy aliases
      *
      * @param ContainerBuilder $container
+     *
+     * @return void
      */
-    protected function handleLegacyTwigExtensionAlias(ContainerBuilder $container)
+    protected function handleLegacyTwigExtensionAlias(ContainerBuilder $container): void
     {
         $mapping = $this->getLegacyAliasMapping();
         $this->performAliasMapping($container, $mapping['twig']);
@@ -180,10 +190,10 @@ class TmdbSymfonyExtension extends Extension
      * Handle cache
      *
      * @param ContainerBuilder $container
-     * @param $options
-     * @return mixed
+     * @param array<array> $options
+     * @return array<array>
      */
-    protected function handleCache(ContainerBuilder $container, $options)
+    protected function handleCache(ContainerBuilder $container, array $options)
     {
         if (null !== $handler = $options['cache']['handler']) {
             $serviceId = sprintf('doctrine_cache.providers.%s', $options['cache']['handler']);
@@ -197,10 +207,10 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Handle log
      *
-     * @param $options
-     * @return mixed
+     * @param array<array> $options
+     * @return array<array>
      */
-    protected function handleLog($options)
+    protected function handleLog(array $options): array
     {
         if (null !== $handler = $options['log']['handler']) {
             $options['log']['handler'] = !is_string($handler) ? $handler : new $handler();
