@@ -45,4 +45,4 @@ jobs:
         run: "php git-phpcs.phar origin/$GITHUB_BASE_REF...$GITHUB_SHA --report=checkstyle | cs2pr"
 
       - name: "Run PHPStan"
-        run: "vendor/bin/phpstan analyse --error-format=checkstyle | cs2pr"
+        run: "vendor/bin/phpstan analyse --error-format=checkstyle --no-progress -c phpstan.neon | cs2pr"
