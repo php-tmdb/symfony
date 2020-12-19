@@ -1,4 +1,5 @@
 <?php
+
 namespace Tmdb\SymfonyBundle\Twig;
 
 use Tmdb\Client;
@@ -19,11 +20,18 @@ class TmdbExtension extends AbstractExtension
      */
     private $client;
 
+    /**
+     * TmdbExtension constructor.
+     * @param Client $client
+     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
+    /**
+     * @return array|TwigFilter[]
+     */
     public function getFilters()
     {
         return array(
@@ -32,26 +40,41 @@ class TmdbExtension extends AbstractExtension
         );
     }
 
-    public function getHtml($image, $size = 'original', $width = null, $height = null)
+    /**
+     * @param string $image
+     * @param string $size
+     * @param int|null $width
+     * @param int|null $height
+     * @return string
+     */
+    public function getHtml(string $image, string $size = 'original', int $width = null, int $height = null): string
     {
         return $this->getHelper()->getHtml($image, $size, $width, $height);
     }
 
-    public function getUrl($image, $size = 'original')
+    /**
+     * @param string $image
+     * @param string $size
+     * @return string
+     */
+    public function getUrl(string $image, string $size = 'original'): string
     {
         return $this->getHelper()->getUrl($image, $size);
     }
 
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return 'tmdb_extension';
     }
 
     /**
-     * @param  null  $client
+     * @param  Client  $client
      * @return $this
      */
-    public function setClient($client)
+    public function setClient(Client $client)
     {
         $this->client = $client;
 
@@ -59,9 +82,9 @@ class TmdbExtension extends AbstractExtension
     }
 
     /**
-     * @return null
+     * @return Client|null
      */
-    public function getClient()
+    public function getClient(): ?Client
     {
         return $this->client;
     }
