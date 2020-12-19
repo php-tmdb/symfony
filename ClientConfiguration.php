@@ -22,7 +22,7 @@ class ClientConfiguration extends ParameterBag implements ConfigurationInterface
         parent::__construct($options);
     }
 
-    public function setCacheHandler(Cache $handler = null)
+    public function setCacheHandler(Cache $handler = null): void
     {
         $this->parameters['cache']['handler'] = $handler;
     }

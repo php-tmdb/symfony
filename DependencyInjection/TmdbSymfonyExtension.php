@@ -42,6 +42,8 @@ class TmdbSymfonyExtension extends Extension
 {
     /**
      * {@inheritDoc}
+     *
+     * @return void
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -134,8 +136,10 @@ class TmdbSymfonyExtension extends Extension
      *
      * @param $container
      * @param array $mapping
+     *
+     * @return void
      */
-    protected function performAliasMapping($container, array $mapping = [])
+    protected function performAliasMapping(ContainerBuilder $container, array $mapping = []): void
     {
         foreach ($mapping as $legacyAlias => $newAlias) {
             // @todo fix alias with public/private properties
@@ -147,8 +151,10 @@ class TmdbSymfonyExtension extends Extension
      * Handle general lgeacy aliases.
      *
      * @param ContainerBuilder $container
+     *
+     * @return void
      */
-    protected function handleLegacyGeneralAliases(ContainerBuilder $container)
+    protected function handleLegacyGeneralAliases(ContainerBuilder $container): void
     {
         $mapping = $this->getLegacyAliasMapping();
         $this->performAliasMapping($container, $mapping['general']);
@@ -158,8 +164,10 @@ class TmdbSymfonyExtension extends Extension
      * Map repository legacy aliases
      *
      * @param ContainerBuilder $container
+     *
+     * @return void
      */
-    protected function handleLegacyRepositoryAliases(ContainerBuilder $container)
+    protected function handleLegacyRepositoryAliases(ContainerBuilder $container): void
     {
         $mapping = $this->getLegacyAliasMapping();
         $this->performAliasMapping($container, $mapping['repositories']);
@@ -169,8 +177,10 @@ class TmdbSymfonyExtension extends Extension
      * Map twig legacy aliases
      *
      * @param ContainerBuilder $container
+     *
+     * @return void
      */
-    protected function handleLegacyTwigExtensionAlias(ContainerBuilder $container)
+    protected function handleLegacyTwigExtensionAlias(ContainerBuilder $container): void
     {
         $mapping = $this->getLegacyAliasMapping();
         $this->performAliasMapping($container, $mapping['twig']);

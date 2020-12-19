@@ -33,17 +33,17 @@ class TmdbExtension extends AbstractExtension
         );
     }
 
-    public function getHtml($image, $size = 'original', $width = null, $height = null)
+    public function getHtml($image, $size = 'original', $width = null, $height = null): string
     {
         return $this->getHelper()->getHtml($image, $size, $width, $height);
     }
 
-    public function getUrl($image, $size = 'original')
+    public function getUrl($image, $size = 'original'): string
     {
         return $this->getHelper()->getUrl($image, $size);
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'tmdb_extension';
     }
@@ -60,9 +60,9 @@ class TmdbExtension extends AbstractExtension
     }
 
     /**
-     * @return null
+     * @return Client
      */
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->client;
     }

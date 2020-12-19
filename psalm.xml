@@ -10,6 +10,7 @@
         <directory name="." />
         <ignoreFiles>
             <directory name="vendor" />
+            <directory name="Tests" />
         </ignoreFiles>
     </projectFiles>
 </psalm>
