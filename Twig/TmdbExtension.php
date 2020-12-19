@@ -25,6 +25,9 @@ class TmdbExtension extends AbstractExtension
         $this->client = $client;
     }
 
+    /**
+     * @return array|TwigFilter[]
+     */
     public function getFilters()
     {
         return array(
@@ -33,7 +36,14 @@ class TmdbExtension extends AbstractExtension
         );
     }
 
-    public function getHtml($image, $size = 'original', $width = null, $height = null): string
+    /**
+     * @param string $image
+     * @param string $size
+     * @param int|null $width
+     * @param int|null $height
+     * @return string
+     */
+    public function getHtml(string $image, string $size = 'original', int $width = null, int $height = null): string
     {
         return $this->getHelper()->getHtml($image, $size, $width, $height);
     }
