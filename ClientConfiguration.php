@@ -29,12 +29,4 @@ class ClientConfiguration extends ParameterBag implements ConfigurationInterface
     {
         $this->parameters['cache']['handler'] = $handler;
     }
-
-    /**
-     * @return array<string>
-     */
-    public function all()
-    {
-        return $this->parameters;
-    }
 }
