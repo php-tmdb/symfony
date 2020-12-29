@@ -55,8 +55,6 @@ jobs:
         with:
           php-version: "${{ matrix.php-version }}"
           coverage: "pcov"
-          ini-values: "zend.assertions=1"
-          extensions: "pdo_sqlite"
 
       - name: "Cache dependencies installed with composer"
         uses: "actions/cache@v2"

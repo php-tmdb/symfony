@@ -14,9 +14,9 @@
     <env name="ENV" value="test"/>
     <env name="SYMFONY_DEPRECATIONS_HELPER" value="verbose=1"/>
   </php>
-<!--  <listeners>-->
-<!--    <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>-->
-<!--  </listeners>-->
+  <listeners>
+    <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
+  </listeners>
   <testsuites>
     <testsuite name="php-tmdb-symfony Test Suite">
       <directory suffix="Test.php">./Tests/</directory>
