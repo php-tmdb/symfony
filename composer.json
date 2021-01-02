@@ -16,7 +16,7 @@
         "php": "^7.3|^8.0",
         "doctrine/doctrine-cache-bundle": "^1.0",
         "php-tmdb/api": "dev-release/4.0.0 as 4.0.0",
-        "symfony/config": "^4.3.7 || ^5.0",
+        "symfony/config": "^4.3.7 || <6",
         "symfony/dependency-injection": "^4.3.7 || <6",
         "symfony/event-dispatcher": "^4.3.7 || <6",
         "symfony/http-kernel": "^4.3.7 || >=5.1.5",
@@ -26,7 +26,11 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml coverage"
+        "test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml coverage",
+        "test-coverage": "php -d xdebug.mode=coverage vendor/bin/phpunit --coverage-html build/coverage",
+        "test-cs": "vendor/bin/phpcs",
+        "test-phpstan": "vendor/bin/phpstan analyse",
+        "test-psalm": "vendor/bin/psalm lib/"
     },
     "require-dev": {
         "nyholm/psr7": "^1.2",

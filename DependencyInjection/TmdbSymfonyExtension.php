@@ -2,12 +2,13 @@
 
 namespace Tmdb\SymfonyBundle\DependencyInjection;
 
+use Doctrine\Tests\Common\Annotations\Fixtures\Api;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Tmdb\ApiToken;
+use Tmdb\Token\Api\ApiToken;
 use Tmdb\Client;
 use Tmdb\Repository\AccountRepository;
 use Tmdb\Repository\AuthenticationRepository;
@@ -53,7 +54,7 @@ class TmdbSymfonyExtension extends Extension
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
 
-        $container->setParameter('tmdb.api_key', $config['api_key']);
+        $container->setParameter('tmdb.api_token', $config['options']['api_token']);
 
         if (!$config['disable_legacy_aliases']) {
             $this->handleLegacyGeneralAliases($container);
@@ -75,17 +76,8 @@ class TmdbSymfonyExtension extends Extension
             }
         }
 
-        $options = $config['options'];
-
-        if ($options['cache']['enabled']) {
-            $options = $this->handleCache($container, $options);
-        }
-
-        if ($options['log']['enabled']) {
-            $options = $this->handleLog($options);
-        }
-
-        $container->setParameter('tmdb.options', $options);
+        $container->setParameter('tmdb.options', $config);
+        $container->setParameter('tmdb.client.options', $config['options']);
     }
 
     /**

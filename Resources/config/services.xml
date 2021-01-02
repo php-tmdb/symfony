@@ -6,21 +6,48 @@
 
     <services>
         <service id="Tmdb\Client" public="true">
-            <argument type="service" id="Tmdb\ApiToken" />
             <argument type="service" id="Tmdb\SymfonyBundle\ClientConfiguration" />
         </service>
 
-        <service id="Tmdb\ApiToken" public="false">
-            <argument>%tmdb.api_key%</argument>
-        </service>
-
         <service id="Tmdb\SymfonyBundle\ClientConfiguration" public="false">
-            <argument type="service" id="event_dispatcher" />
-            <argument>%tmdb.options%</argument>
-
-            <call method="setCacheHandler">
-                <argument type="service" id="tmdb.cache_handler" on-invalid="null" />
-            </call>
+            <argument type="service" id="Tmdb\Token\Api\ApiToken" />
+            <argument /><!-- PSR-14 Event dispatcher -->
+            <argument /><!-- PSR-18 HTTP Client -->
+            <argument /><!-- PSR-17 Request Factory -->
+            <argument /><!-- PSR-17 Response Factory -->
+            <argument /><!-- PSR-17 Stream Factory -->
+            <argument /><!-- PSR-17 Uri Factory -->
+            <argument /><!-- PSR-6 Cache -->
+            <argument /><!-- PSR-3 Logger -->
+            <argument>%tmdb.client.options%</argument>
         </service>
+
+        <service id="Tmdb\Token\Api\ApiToken" public="false">
+            <argument>%tmdb.api_token%</argument>
+        </service>
+
+        <service id="Tmdb\HttpClient\HttpClient">
+            <factory service="Tmdb\Client" method="getHttpClient" />
+        </service>
+
+        <service id="Tmdb\Event\Listener\RequestListener">
+            <argument type="service" id="Tmdb\HttpClient\HttpClient" />
+            <argument />
+        </service>
+
+        <service id="Tmdb\Event\Listener\Psr6CachedRequestListener">
+            <factory service="Tmdb\Client" method="getHttpClient" />
+            <argument />
+            <argument />
+            <argument />
+            <argument>%tmdb.client.options%</argument>
+        </service>
+
+        <service id="Tmdb\Event\Listener\Request\ApiTokenRequestListener">
+            <argument type="service" id="Tmdb\Token\Api\ApiToken" />
+        </service>
+
+        <service id="Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener" />
+        <service id="Tmdb\Event\Listener\Request\AcceptJsonRequestListener" />
     </services>
 </container>
