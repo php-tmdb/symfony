@@ -55,7 +55,8 @@ final class TmdbSymfonyExtensionTest extends TestCase
     protected function getMinimalConfig(): array
     {
         $yaml = <<<EOF
-api_key: bogus
+options:
+    api_token: bogus
 EOF;
 
         $parser = new Parser();
@@ -220,13 +221,13 @@ EOF;
     protected function getFullConfig(): array
     {
         $yaml = <<<EOF
-api_key: bogus
 repositories:
     enabled: true
 twig_extension:
     enabled: true
 disable_legacy_aliases: false
 options:
+    api_key: bogus
     adapter: null
     secure: true
     host: api.themoviedb.org/3/

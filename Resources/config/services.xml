@@ -17,8 +17,6 @@
             <argument /><!-- PSR-17 Response Factory -->
             <argument /><!-- PSR-17 Stream Factory -->
             <argument /><!-- PSR-17 Uri Factory -->
-            <argument /><!-- PSR-6 Cache -->
-            <argument /><!-- PSR-3 Logger -->
             <argument>%tmdb.client.options%</argument>
         </service>
 
@@ -36,7 +34,7 @@
         </service>
 
         <service id="Tmdb\Event\Listener\Psr6CachedRequestListener">
-            <factory service="Tmdb\Client" method="getHttpClient" />
+            <argument type="service" id="Tmdb\HttpClient\HttpClient" />
             <argument />
             <argument />
             <argument />
@@ -49,5 +47,26 @@
 
         <service id="Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener" />
         <service id="Tmdb\Event\Listener\Request\AcceptJsonRequestListener" />
+
+        <service id="Tmdb\Event\Listener\Logger\LogHttpMessageListener">
+            <argument />
+            <argument type="service" id="Tmdb\Formatter\HttpMessage\SimpleHttpMessageFormatter" />
+        </service>
+
+        <service id="Tmdb\Event\Listener\Logger\LogHydrationListener">
+            <argument />
+            <argument type="service" id="Tmdb\Formatter\Hydration\SimpleHydrationFormatter" />
+            <argument />
+        </service>
+
+        <service id="Tmdb\Event\Listener\Logger\LogApiErrorListener">
+            <argument />
+            <argument type="service" id="Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter" />
+        </service>
+
+        <service id="Tmdb\Formatter\HttpMessage\SimpleHttpMessageFormatter" />
+        <service id="Tmdb\Formatter\HttpMessage\FullHttpMessageFormatter" />
+        <service id="Tmdb\Formatter\Hydration\SimpleHydrationFormatter" />
+        <service id="Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter" />
     </services>
 </container>

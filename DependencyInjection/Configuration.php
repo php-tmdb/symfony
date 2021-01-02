@@ -2,7 +2,6 @@
 
 namespace Tmdb\SymfonyBundle\DependencyInjection;
 
-use Monolog\Logger;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Tmdb\Client;
@@ -40,7 +39,22 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->canBeEnabled()
                     ->children()
+                        // @todo define logger to use per section ( as option ), e.g. hydration with data could be array, and visible in profiler
+                        // @todo see if more information could be optionally added ( add to message / context )
+                        // @todo when logging is enabled, define "good defaults" -----^
+                        // @todo be able to define the formatter used
                         ->scalarNode('adapter')->defaultValue(null)->end()
+                        ->booleanNode('request_logging')->defaultTrue()->end()
+                        ->booleanNode('response_logging')->defaultTrue()->end()
+                        ->booleanNode('api_exception_logging')->defaultTrue()->end()
+                        ->booleanNode('client_exception_logging')->defaultTrue()->end()
+                        ->arrayNode('hydration')
+                            ->addDefaultsIfNotSet()
+                            ->canBeEnabled()
+                            ->children()
+                                ->booleanNode('with_hydration_data')->defaultFalse()->end()
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
                 ->arrayNode('options')
@@ -58,13 +72,12 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->arrayNode('http')
                             ->addDefaultsIfNotSet()
-                            ->isRequired()
                             ->children()
-                                ->scalarNode('client')->isRequired()->cannotBeEmpty()->end()
-                                ->scalarNode('request_factory')->isRequired()->cannotBeEmpty()->end()
-                                ->scalarNode('response_factory')->isRequired()->cannotBeEmpty()->end()
-                                ->scalarNode('stream_factory')->isRequired()->cannotBeEmpty()->end()
-                                ->scalarNode('uri_factory')->isRequired()->cannotBeEmpty()->end()
+                                ->scalarNode('client')->defaultValue(null)->end()
+                                ->scalarNode('request_factory')->defaultValue(null)->end()
+                                ->scalarNode('response_factory')->defaultValue(null)->end()
+                                ->scalarNode('stream_factory')->defaultValue(null)->end()
+                                ->scalarNode('uri_factory')->defaultValue(null)->end()
                             ->end()
                         ->end()
                         ->arrayNode('hydration')

@@ -126,6 +126,8 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Performs mapping of legacy aliases to their new service identifiers.
      *
+     * @todo major release remove alias mapping of legacy muck :-)
+     *
      * @param ContainerBuilder $container
      * @param array<string> $mapping
      *
@@ -135,7 +137,9 @@ class TmdbSymfonyExtension extends Extension
     {
         foreach ($mapping as $legacyAlias => $newAlias) {
             // @todo fix alias with public/private properties
-            $container->setAlias($legacyAlias, new Alias($newAlias));
+            $container
+                ->setAlias($legacyAlias, new Alias($newAlias))
+            ;
         }
     }
 
@@ -176,38 +180,5 @@ class TmdbSymfonyExtension extends Extension
     {
         $mapping = $this->getLegacyAliasMapping();
         $this->performAliasMapping($container, $mapping['twig']);
-    }
-
-    /**
-     * Handle cache
-     *
-     * @param ContainerBuilder $container
-     * @param array<array> $options
-     * @return array<array>
-     */
-    protected function handleCache(ContainerBuilder $container, array $options)
-    {
-        if (null !== $handler = $options['cache']['handler']) {
-            $serviceId = sprintf('doctrine_cache.providers.%s', $options['cache']['handler']);
-
-            $container->setAlias('tmdb.cache_handler', new Alias($serviceId, false));
-        }
-
-        return $options;
-    }
-
-    /**
-     * Handle log
-     *
-     * @param array<array> $options
-     * @return array<array>
-     */
-    protected function handleLog(array $options): array
-    {
-        if (null !== $handler = $options['log']['handler']) {
-            $options['log']['handler'] = !is_string($handler) ? $handler : new $handler();
-        }
-
-        return $options;
     }
 }
