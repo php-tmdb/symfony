@@ -7,26 +7,28 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Tmdb\Client;
 use Tmdb\Event\BeforeHydrationEvent;
 use Tmdb\Event\BeforeRequestEvent;
 use Tmdb\Event\HttpClientExceptionEvent;
-use Tmdb\Event\Listener\Logger\LogApiErrorListener;
-use Tmdb\Event\Listener\Logger\LogHttpMessageListener;
 use Tmdb\Event\Listener\Logger\LogHydrationListener;
 use Tmdb\Event\Listener\Psr6CachedRequestListener;
 use Tmdb\Event\Listener\Request\AcceptJsonRequestListener;
 use Tmdb\Event\Listener\Request\ApiTokenRequestListener;
 use Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener;
+use Tmdb\Event\Listener\Request\UserAgentRequestListener;
 use Tmdb\Event\Listener\RequestListener;
 use Tmdb\Event\RequestEvent;
 use Tmdb\Event\ResponseEvent;
 use Tmdb\Event\TmdbExceptionEvent;
+use Tmdb\SymfonyBundle\TmdbSymfonyBundle;
+use Tmdb\Token\Api\BearerToken;
 
 /**
  * Class EventDispatchingCompilerPass
  * @package Tmdb\SymfonyBundle\DependencyInjection\CompilerPass
  */
-class EventDispatchingCompilerPass implements CompilerPassInterface
+class EventDispatchingPass implements CompilerPassInterface
 {
     /**
      * @param ContainerBuilder $container
@@ -70,6 +72,11 @@ class EventDispatchingCompilerPass implements CompilerPassInterface
             $requestListener->getClass()
         );
 
+        if (null !== $bearerToken = $parameters['options']['bearer_token']) {
+            $definition = $container->getDefinition(ApiTokenRequestListener::class);
+            $definition->replaceArgument(0, new Reference(BearerToken::class));
+        }
+
         $this->registerEventListener(
             $eventDispatcher,
             BeforeRequestEvent::class,
@@ -86,6 +93,22 @@ class EventDispatchingCompilerPass implements CompilerPassInterface
             $eventDispatcher,
             BeforeRequestEvent::class,
             AcceptJsonRequestListener::class
+        );
+
+        $definition = $container->getDefinition(UserAgentRequestListener::class);
+        $definition->replaceArgument(
+            0,
+            sprintf(
+                'php-tmdb/symfony/%s php-tmdb/api/%s',
+                TmdbSymfonyBundle::VERSION,
+                Client::VERSION
+            )
+        );
+
+        $this->registerEventListener(
+            $eventDispatcher,
+            BeforeRequestEvent::class,
+            UserAgentRequestListener::class
         );
     }
 
@@ -121,6 +144,74 @@ class EventDispatchingCompilerPass implements CompilerPassInterface
     }
 
     /**
+     * @param string $event
+     * @param string $listener
+     * @param Definition $eventDispatcher
+     * @param ContainerBuilder $container
+     * @param array $parameters
+     */
+    private function handleRequestLogging(
+        string $event,
+        string $listener,
+        Definition $eventDispatcher,
+        ContainerBuilder $container,
+        array $parameters
+    ) {
+        $options = $parameters[$listener];
+        $configEntry = sprintf('tmdb_symfony.log.%s', $listener);
+
+        if (!$options['enabled']) {
+            return;
+        }
+
+        if (!$options['adapter']) {
+            $options['adapter'] = $parameters['adapter'];
+        }
+
+        if (!$container->hasDefinition($options['adapter'])) {
+            throw new \RuntimeException(sprintf(
+                'Unable to find a definition for the adapter to provide tmdb request logging, you gave "%s" for "%s".',
+                $options['adapter'],
+                sprintf('%s.%s', $configEntry, 'adapter')
+            ));
+        }
+
+        if (!$container->hasDefinition($options['listener'])) {
+            throw new \RuntimeException(sprintf(
+                'Unable to find a definition for the listener to provide tmdb request logging, you gave "%s" for "%s".',
+                $options['logger'],
+                sprintf('%s.%s', $configEntry, 'listener')
+            ));
+        }
+
+        if (!$container->hasDefinition($options['formatter'])) {
+            throw new \RuntimeException(sprintf(
+                'Unable to find a definition for the formatter to provide tmdb request logging, you gave "%s" for "%s".',
+                $options['logger'],
+                sprintf('%s.%s', $configEntry, 'formatter')
+            ));
+        }
+
+        $listenerDefinition = $container->getDefinition($options['listener']);
+        $listenerDefinition->replaceArgument(0, new Reference($options['adapter']));
+        $listenerDefinition->replaceArgument(1, new Reference($options['formatter']));
+
+        // Cannot assume if this was replaced this parameter will be kept.
+        if ($listenerDefinition->getClass() === LogHydrationListener::class) {
+            $listenerDefinition->replaceArgument(
+                2,
+                $parameters['hydration']['with_hydration_data']
+            );
+        }
+
+        $this->registerEventListener(
+            $eventDispatcher,
+            $event,
+            $listenerDefinition->getClass()
+        );
+    }
+
+    /**
      * Register listeners for logging.
      *
      * @param ContainerBuilder $container
@@ -129,63 +220,21 @@ class EventDispatchingCompilerPass implements CompilerPassInterface
      */
     private function handleLoggerListeners(ContainerBuilder $container, Definition $eventDispatcher, array $parameters)
     {
-        $requestLoggerListenerDefinition = $container->getDefinition(LogHttpMessageListener::class);
-        $hydrationLoggerListenerDefinition = $container->getDefinition(LogHydrationListener::class);
-        $apiErrorListenerDefinition = $container->getDefinition(LogApiErrorListener::class);
+        $listeners = [
+            BeforeRequestEvent::class => 'request_logging',
+            ResponseEvent::class => 'response_logging',
+            HttpClientExceptionEvent::class => 'client_exception_logging',
+            TmdbExceptionEvent::class => 'api_exception_logging',
+            BeforeHydrationEvent::class => 'hydration'
+        ];
 
-        foreach (
-            [
-                $requestLoggerListenerDefinition,
-                $hydrationLoggerListenerDefinition,
-                $apiErrorListenerDefinition
-            ] as $def
-        ) {
-            /** @var Definition $def */
-            $def->replaceArgument(0, new Reference($parameters['log']['adapter']));
-        }
-
-        if ($parameters['log']['request_logging']) {
-            $this->registerEventListener(
+        foreach ($listeners as $event => $listener) {
+            $this->handleRequestLogging(
+                $event,
+                $listener,
                 $eventDispatcher,
-                BeforeRequestEvent::class,
-                $requestLoggerListenerDefinition->getClass()
-            );
-        }
-
-        if ($parameters['log']['response_logging']) {
-            $this->registerEventListener(
-                $eventDispatcher,
-                ResponseEvent::class,
-                $requestLoggerListenerDefinition->getClass()
-            );
-        }
-
-        if ($parameters['log']['client_exception_logging']) {
-            $this->registerEventListener(
-                $eventDispatcher,
-                HttpClientExceptionEvent::class,
-                $requestLoggerListenerDefinition->getClass()
-            );
-        }
-
-        if ($parameters['log']['api_exception_logging']) {
-            $this->registerEventListener(
-                $eventDispatcher,
-                TmdbExceptionEvent::class,
-                $apiErrorListenerDefinition->getClass()
-            );
-        }
-
-        if ($parameters['log']['hydration']['enabled']) {
-            $hydrationLoggerListenerDefinition->replaceArgument(
-                2,
-                $parameters['log']['hydration']['with_hydration_data']
-            );
-
-            $this->registerEventListener(
-                $eventDispatcher,
-                BeforeHydrationEvent::class,
-                $hydrationLoggerListenerDefinition->getClass()
+                $container,
+                $parameters['log']
             );
         }
     }

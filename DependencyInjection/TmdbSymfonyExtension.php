@@ -2,7 +2,6 @@
 
 namespace Tmdb\SymfonyBundle\DependencyInjection;
 
-use Doctrine\Tests\Common\Annotations\Fixtures\Api;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -55,6 +54,7 @@ class TmdbSymfonyExtension extends Extension
         $loader->load('services.xml');
 
         $container->setParameter('tmdb.api_token', $config['options']['api_token']);
+        $container->setParameter('tmdb.bearer_token', $config['options']['bearer_token']);
 
         if (!$config['disable_legacy_aliases']) {
             $this->handleLegacyGeneralAliases($container);

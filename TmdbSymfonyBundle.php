@@ -10,7 +10,7 @@ use Psr\Http\Message\UriFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Tmdb\SymfonyBundle\DependencyInjection\CompilerPass\ConfigurationPass;
-use Tmdb\SymfonyBundle\DependencyInjection\CompilerPass\EventDispatchingCompilerPass;
+use Tmdb\SymfonyBundle\DependencyInjection\CompilerPass\EventDispatchingPass;
 
 /**
  * Class TmdbSymfonyBundle
@@ -18,6 +18,7 @@ use Tmdb\SymfonyBundle\DependencyInjection\CompilerPass\EventDispatchingCompiler
  */
 class TmdbSymfonyBundle extends Bundle
 {
+    const VERSION = '4.0.0';
     const PSR18_CLIENTS = 'tmdb_symfony.psr18.clients';
     const PSR17_REQUEST_FACTORIES = 'tmdb_symfony.psr17.request_factories';
     const PSR17_RESPONSE_FACTORIES = 'tmdb_symfony.psr17.response_factories';
@@ -32,7 +33,7 @@ class TmdbSymfonyBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new ConfigurationPass());
-        $container->addCompilerPass(new EventDispatchingCompilerPass());
+        $container->addCompilerPass(new EventDispatchingPass());
 
         $targets = [
             ClientInterface::class => self::PSR18_CLIENTS,

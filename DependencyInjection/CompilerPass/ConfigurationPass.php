@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Tmdb\SymfonyBundle\TmdbSymfonyBundle;
+use Tmdb\Token\Api\BearerToken;
 
 class ConfigurationPass implements CompilerPassInterface
 {
@@ -19,6 +20,10 @@ class ConfigurationPass implements CompilerPassInterface
     {
         $parameters = $container->getParameter('tmdb.options');
         $configDefinition = $container->getDefinition('Tmdb\SymfonyBundle\ClientConfiguration');
+
+        if (null !== $bearerToken = $parameters['options']['bearer_token']) {
+            $configDefinition->replaceArgument(0, new Reference(BearerToken::class));
+        }
 
         $this->setupEventDispatcher($container, $configDefinition, $parameters);
         $this->setupHttpClient($container, $configDefinition, $parameters);

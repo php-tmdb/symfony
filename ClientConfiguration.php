@@ -47,6 +47,9 @@ class ClientConfiguration extends ParameterBag implements ConfigurationInterface
         $options['http']['stream_factory'] = $streamFactory;
         $options['http']['uri_factory'] = $uriFactory;
 
+        // Library handles it as an api_token
+        unset($options['bearer_token']);
+
         parent::__construct($options);
     }
 }
