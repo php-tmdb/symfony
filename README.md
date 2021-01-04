@@ -59,6 +59,15 @@ __Configure caching__
 
 You can use any PSR-6 cache you wish to use, we will simply use symfony's cache.
 
+When making use of caching, make sure to also include `php-http/cache-plugin` in composer, this plugin handles the logic for us, 
+so we don't have to re-invent the wheel. 
+
+You are however also free to choose to implement your own cache listener, or add the caching logic inside the http client of your choice.
+
+```shell script
+composer require php-http/cache-plugin:^1.7
+```
+
 First off configure the cache pool in symfony `config/cache.yaml`:
 
 ```yaml
