@@ -61,11 +61,6 @@ jobs:
             php-version: "8.0"
             deps: "dev"
 
-          # Test against latest Symfony 4.4 stable on 8.0 deps low
-          - symfony-require: "4.4.*"
-            php-version: "8.0"
-            deps: "low"
-
           # Test against latest Symfony 4.4 stable on 7.4 deps normal
           - symfony-require: "4.4.*"
             php-version: "8.0"
