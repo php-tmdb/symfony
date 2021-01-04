@@ -101,11 +101,6 @@ jobs:
             php-version: "8.0"
             deps: "dev"
 
-          # Test against latest Symfony 5.1 stable on 8.0 deps low
-          - symfony-require: "5.1.*"
-            php-version: "8.0"
-            deps: "low"
-
           # Test against latest Symfony 5.1 stable on 7.4 deps normal
           - symfony-require: "5.1.*"
             php-version: "8.0"
@@ -145,11 +140,6 @@ jobs:
           - symfony-require: "5.2.*"
             php-version: "8.0"
             deps: "dev"
-
-          # Test against latest Symfony 5.2 stable on 8.0 deps low
-          - symfony-require: "5.2.*"
-            php-version: "8.0"
-            deps: "low"
 
           # Test against latest Symfony 5.2 stable on 7.4 deps normal
           - symfony-require: "5.2.*"
