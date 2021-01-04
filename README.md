@@ -10,6 +10,12 @@
 
 Compatible with Symfony 4 and 5, PHP 7.3 and up.
 
+## Buy me a coffee, or a beer :-)
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMLZ362KQ8K8W"><img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></a>
+
+My stomach will appreciate your donation! 
+
 Installation
 ------------
 
