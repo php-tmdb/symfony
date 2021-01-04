@@ -276,3 +276,4 @@ There is also a Twig helper that makes use of the `Tmdb\Helper\ImageHelper` to o
 ```
 
 **For all all other interactions take a look at [php-tmdb/api](https://github.com/php-tmdb/api).**
+
