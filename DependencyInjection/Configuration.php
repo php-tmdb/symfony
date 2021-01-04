@@ -33,12 +33,16 @@ class Configuration implements ConfigurationInterface
 
     /**
      * @param ArrayNodeDefinition $rootNode
+     *
+     * @return void
      */
-    private function addRootChildren(ArrayNodeDefinition $rootNode)
+    private function addRootChildren(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->beforeNormalization()
-                ->ifTrue(function ($v){ return isset($v['api_key']) && !empty($v['api_key']); })
+                ->ifTrue(function ($v) {
+                    return isset($v['api_key']) && !empty($v['api_key']);
+                })
                 ->then(function ($v) {
                     $v['options']['api_token'] = $v['api_key'];
 
@@ -58,16 +62,24 @@ class Configuration implements ConfigurationInterface
 
     /**
      * @param ArrayNodeDefinition $rootNode
+     *
+     * @return void
      */
-    private function addOptionsSection(ArrayNodeDefinition $rootNode) 
+    private function addOptionsSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()
                 ->arrayNode('options')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('api_token')->defaultValue(null)->info('Will be set by root api_key')->end()
-                        ->scalarNode('bearer_token')->defaultValue(null)->info('If set will be used instead of api token')->end()
+                        ->scalarNode('api_token')
+                            ->defaultValue(null)
+                            ->info('Will be set by root api_key')
+                        ->end()
+                        ->scalarNode('bearer_token')
+                            ->defaultValue(null)
+                            ->info('If set will be used instead of api token')
+                        ->end()
                         ->scalarNode('secure')->defaultTrue()->end()
                         ->scalarNode('host')->defaultValue(Client::TMDB_URI)->end()
                         ->scalarNode('guest_session_token')->defaultValue(null)->end()
@@ -123,8 +135,10 @@ class Configuration implements ConfigurationInterface
 
     /**
      * @param ArrayNodeDefinition $rootNode
+     *
+     * @return void
      */
-    private function addLogSection(ArrayNodeDefinition $rootNode)
+    private function addLogSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()
@@ -144,7 +158,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('adapter')->defaultValue(null)->end()
                                 ->scalarNode('formatter')->defaultValue(SimpleHttpMessageFormatter::class)->end()
                             ->end()
-                        ->end()            
+                        ->end()
                         ->arrayNode('response_logging')
                             ->addDefaultsIfNotSet()
                             ->children()
@@ -171,7 +185,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('adapter')->defaultValue(null)->end()
                                 ->scalarNode('formatter')->defaultValue(SimpleHttpMessageFormatter::class)->end()
                             ->end()
-                        ->end()            
+                        ->end()
                         ->arrayNode('hydration')
                             ->addDefaultsIfNotSet()
                             ->children()
@@ -190,8 +204,10 @@ class Configuration implements ConfigurationInterface
 
     /**
      * @param ArrayNodeDefinition $rootNode
+     *
+     * @return void
      */
-    private function addCacheSection(ArrayNodeDefinition $rootNode)
+    private function addCacheSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()

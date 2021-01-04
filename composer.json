@@ -28,8 +28,8 @@
         "test-ci": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml coverage",
         "test-coverage": "php -d xdebug.mode=coverage vendor/bin/phpunit --coverage-html build/coverage",
         "test-cs": "vendor/bin/phpcs",
-        "test-phpstan": "vendor/bin/phpstan analyse",
-        "test-psalm": "vendor/bin/psalm lib/"
+        "test-phpstan": "vendor/bin/phpstan analyse -c phpstan.neon . --level 7 --no-progress",
+        "test-psalm": "vendor/bin/psalm --show-info=true ."
     },
     "require-dev": {
         "nyholm/psr7": "^1.2",

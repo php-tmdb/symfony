@@ -16,6 +16,8 @@ class ConfigurationPass implements CompilerPassInterface
 {
     /**
      * @param ContainerBuilder $container
+     *
+     * @return void
      */
     public function process(ContainerBuilder $container)
     {
@@ -35,12 +37,14 @@ class ConfigurationPass implements CompilerPassInterface
      * @param ContainerBuilder $container
      * @param Definition $configDefinition
      * @param array $parameters
+     *
+     * @return void
      */
     private function setupEventDispatcher(
         ContainerBuilder $container,
         Definition $configDefinition,
         array $parameters
-    ) {
+    ): void {
         if (!$container->hasDefinition($parameters['options']['event_dispatcher']['adapter'])) {
             $this->tryToAliasAutowiredInterfacesIfPossible(
                 $container,
@@ -57,12 +61,14 @@ class ConfigurationPass implements CompilerPassInterface
      * @param ContainerBuilder $container
      * @param Definition $configDefinition
      * @param array $parameters
+     *
+     * @return void
      */
     private function setupHttpClient(
         ContainerBuilder $container,
         Definition $configDefinition,
         array $parameters
-    ) {
+    ): void {
         if (!$container->hasDefinition($parameters['options']['http']['client'])) {
             $this->tryToAliasAutowiredInterfacesIfPossible(
                 $container,
@@ -119,7 +125,7 @@ class ConfigurationPass implements CompilerPassInterface
      * @param ContainerBuilder $container
      * @param string $alias
      * @param string $tag
-     * @param $configurationPath
+     * @param string $configurationPath
      * @return void
      * @throws \RuntimeException
      */
@@ -135,7 +141,7 @@ class ConfigurationPass implements CompilerPassInterface
             if (count($services) > 1) {
                 throw new RuntimeException(
                     sprintf(
-                        'Trying to automatically configure tmdb symfony bundle, however we found "%d" applicable services'
+                        'Trying to automatically configure tmdb symfony bundle, however we found %d applicable services'
                         . ' ( %s ) for tag "%s", please set one of these explicitly in your configuration under "%s".',
                         count($services),
                         implode(', ', array_keys($services)),
@@ -154,7 +160,8 @@ class ConfigurationPass implements CompilerPassInterface
 
         throw new RuntimeException(
             sprintf(
-                'Unable to find any services tagged with "%s", please set it in the configuration explicitly under "%s".',
+                'Unable to find any services tagged with "%s", ' .
+                'please set it in the configuration explicitly under "%s".',
                 $tag,
                 $configurationPath
             )

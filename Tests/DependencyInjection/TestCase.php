@@ -35,7 +35,10 @@ class TestCase extends BaseTestCase
      */
     protected function assertNotAlias($key): void
     {
-        $this->assertFalse($this->container->hasAlias($key), sprintf('%s alias is expected not to be registered', $key));
+        $this->assertFalse(
+            $this->container->hasAlias($key),
+            sprintf('%s alias is expected not to be registered', $key)
+        );
     }
 
     /**
@@ -74,6 +77,16 @@ class TestCase extends BaseTestCase
     }
 
     /**
+     * getEmptyConfig.
+     *
+     * @return array
+     */
+    protected function getEmptyConfig(): array
+    {
+        return [];
+    }
+
+    /**
      * @param array $config
      * @return ContainerBuilder
      */
@@ -100,29 +113,6 @@ class TestCase extends BaseTestCase
     }
 
     /**
-     * @return ContainerBuilder
-     */
-    protected function createFullConfiguration(): ContainerBuilder
-    {
-        $this->container = new ContainerBuilder();
-        $loader = new TmdbSymfonyExtension();
-        $config = $this->getFullConfig();
-        $loader->load([$config], $this->container);
-
-        return $this->container;
-    }
-
-    /**
-     * getEmptyConfig.
-     *
-     * @return array
-     */
-    protected function getEmptyConfig(): array
-    {
-        return [];
-    }
-
-    /**
      * getEmptyConfig.
      *
      * @return array
@@ -136,6 +126,19 @@ EOF;
         $parser = new Parser();
 
         return $parser->parse($yaml);
+    }
+
+    /**
+     * @return ContainerBuilder
+     */
+    protected function createFullConfiguration(): ContainerBuilder
+    {
+        $this->container = new ContainerBuilder();
+        $loader = new TmdbSymfonyExtension();
+        $config = $this->getFullConfig();
+        $loader->load([$config], $this->container);
+
+        return $this->container;
     }
 
     /**

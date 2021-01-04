@@ -32,6 +32,8 @@ class EventDispatchingPass implements CompilerPassInterface
 {
     /**
      * @param ContainerBuilder $container
+     *
+     * @return void
      */
     public function process(ContainerBuilder $container)
     {
@@ -55,17 +57,19 @@ class EventDispatchingPass implements CompilerPassInterface
      * @param ContainerBuilder $container
      * @param Definition $eventDispatcher
      * @param array $parameters
+     *
+     * @return void
      */
     private function handleSymfonyEventDispatcherRegistration(
         ContainerBuilder $container,
         Definition $eventDispatcher,
         array $parameters
-    ) {
+    ): void {
         $cacheEnabled = $parameters['cache']['enabled'];
         $logEnabled = $parameters['log']['enabled'];
 
         $requestListener = $cacheEnabled ?
-            $this->getPsr6CacheRequestListener($container, $parameters):
+            $this->getPsr6CacheRequestListener($container, $parameters) :
             $this->getRequestListener($container, $parameters);
 
         if ($logEnabled) {
@@ -155,6 +159,8 @@ class EventDispatchingPass implements CompilerPassInterface
      * @param Definition $eventDispatcher
      * @param ContainerBuilder $container
      * @param array $parameters
+     *
+     * @return void
      */
     private function handleLogging(
         string $event,
@@ -192,14 +198,15 @@ class EventDispatchingPass implements CompilerPassInterface
 
         if (!$container->hasDefinition($options['formatter']) && !$container->hasAlias($options['formatter'])) {
             throw new \RuntimeException(sprintf(
-                'Unable to find a definition for the formatter to provide tmdb request logging, you gave "%s" for "%s".',
+                'Unable to find a definition for the formatter to provide tmdb request logging, ' .
+                'you gave "%s" for "%s".',
                 $options['formatter'],
                 sprintf('%s.%s', $configEntry, 'formatter')
             ));
         }
 
         $adapter = $container->hasAlias($options['adapter']) ?
-            $container->getAlias($options['adapter']):
+            $container->getAlias($options['adapter']) :
             $options['adapter'];
 
         $listenerDefinition = $container->getDefinition($options['listener']);
@@ -227,8 +234,10 @@ class EventDispatchingPass implements CompilerPassInterface
      * @param ContainerBuilder $container
      * @param Definition $eventDispatcher
      * @param array $parameters
+     *
+     * @return void
      */
-    private function handleLoggerListeners(ContainerBuilder $container, Definition $eventDispatcher, array $parameters)
+    private function handleLoggerListeners(ContainerBuilder $container, Definition $eventDispatcher, array $parameters): void
     {
         $listeners = [
             BeforeRequestEvent::class => 'request_logging',

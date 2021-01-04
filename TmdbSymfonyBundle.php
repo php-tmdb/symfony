@@ -16,17 +16,17 @@ use Tmdb\SymfonyBundle\DependencyInjection\CompilerPass\EventDispatchingPass;
 /**
  * Class TmdbSymfonyBundle
  * @package Tmdb\SymfonyBundle
- * @codeCoverageIgnore 
+ * @codeCoverageIgnore
  */
 class TmdbSymfonyBundle extends Bundle
 {
-    const VERSION = '4.0.0';
-    const PSR18_CLIENTS = 'tmdb_symfony.psr18.clients';
-    const PSR17_REQUEST_FACTORIES = 'tmdb_symfony.psr17.request_factories';
-    const PSR17_RESPONSE_FACTORIES = 'tmdb_symfony.psr17.response_factories';
-    const PSR17_STREAM_FACTORIES = 'tmdb_symfony.psr17.stream_factories';
-    const PSR17_URI_FACTORIES = 'tmdb_symfony.psr17.uri_factories';
-    const PSR14_EVENT_DISPATCHERS = 'tmdb_symfony.psr17.event_dispatchers';
+    public const VERSION = '4.0.0';
+    public const PSR18_CLIENTS = 'tmdb_symfony.psr18.clients';
+    public const PSR17_REQUEST_FACTORIES = 'tmdb_symfony.psr17.request_factories';
+    public const PSR17_RESPONSE_FACTORIES = 'tmdb_symfony.psr17.response_factories';
+    public const PSR17_STREAM_FACTORIES = 'tmdb_symfony.psr17.stream_factories';
+    public const PSR17_URI_FACTORIES = 'tmdb_symfony.psr17.uri_factories';
+    public const PSR14_EVENT_DISPATCHERS = 'tmdb_symfony.psr17.event_dispatchers';
 
     /**
      * @param ContainerBuilder $container

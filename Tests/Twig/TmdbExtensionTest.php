@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tmdb\SymfonyBundle\Twig;
-
 
 use PHPUnit\Framework\TestCase;
 use Tmdb\Client;
@@ -49,7 +47,10 @@ class TmdbExtensionTest extends TestCase
             ->setVoteCount(666);
 
         $this->assertEquals('//image.tmdb.org/t/p/original/foo.jpg', $extension->getUrl($image));
-        $this->assertEquals('<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" />', $extension->getHtml($image));
+        $this->assertEquals(
+            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" />',
+            $extension->getHtml($image)
+        );
         $this->assertEquals('tmdb_extension', $extension->getName());
         $this->assertEquals(2, count($extension->getFilters()));
     }
@@ -94,7 +95,10 @@ class TmdbExtensionTest extends TestCase
             ->setVoteCount(666);
 
         $this->assertEquals('//image.tmdb.org/t/p/original/foo.jpg', $extension->getUrl($image));
-        $this->assertEquals('<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" />', $extension->getHtml($image));
+        $this->assertEquals(
+            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" />',
+            $extension->getHtml($image)
+        );
         $this->assertEquals('tmdb_extension', $extension->getName());
         $this->assertEquals(2, count($extension->getFilters()));
     }
