@@ -13,8 +13,8 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
-        "php-tmdb/api": "dev-release/4.0.0 as 4.0.0",
+        "php": "^7.3 || ^8.0",
+        "php-tmdb/api": "^4",
         "symfony/config": "^4.3.7 || <6",
         "symfony/dependency-injection": "^4.3.7 || <6",
         "symfony/event-dispatcher": "^4.3.7 || <6",
