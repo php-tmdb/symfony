@@ -20,7 +20,7 @@ Installation
 ------------
 
 - [Install Composer](https://getcomposer.org/doc/00-intro.md)
-- [Install php-tmdb/api dependencies](https://github.com/php-tmdb/api/tree/release/4.0.0#installation)
+- [Install php-tmdb/api dependencies](https://github.com/php-tmdb/api#installation)
     - For development within Symfony we recommend making use of Symfony's PSR-18 HTTP Client _`Symfony\Component\HttpClient\Psr18Client`_,
       as when non-cached results pass your profiler will be filled with data.
 
