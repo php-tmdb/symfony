@@ -4,110 +4,93 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="tmdb.authentication_repository.class">Tmdb\Repository\AuthenticationRepository</parameter>
-        <parameter key="tmdb.account_repository.class">Tmdb\Repository\AccountRepository</parameter>
-        <parameter key="tmdb.certification_repository.class">Tmdb\Repository\CertificationRepository</parameter>
-        <parameter key="tmdb.changes_repository.class">Tmdb\Repository\ChangesRepository</parameter>
-        <parameter key="tmdb.collection_repository.class">Tmdb\Repository\CollectionRepository</parameter>
-        <parameter key="tmdb.company_repository.class">Tmdb\Repository\CompanyRepository</parameter>
-        <parameter key="tmdb.configuration_repository.class">Tmdb\Repository\ConfigurationRepository</parameter>
-        <parameter key="tmdb.credits_repository.class">Tmdb\Repository\CreditsRepository</parameter>
-        <parameter key="tmdb.discover_repository.class">Tmdb\Repository\DiscoverRepository</parameter>
-        <parameter key="tmdb.find_repository.class">Tmdb\Repository\FindRepository</parameter>
-        <parameter key="tmdb.genre_repository.class">Tmdb\Repository\GenreRepository</parameter>
-        <parameter key="tmdb.jobs_repository.class">Tmdb\Repository\JobsRepository</parameter>
-        <parameter key="tmdb.keyword_repository.class">Tmdb\Repository\KeywordRepository</parameter>
-        <parameter key="tmdb.list_repository.class">Tmdb\Repository\ListRepository</parameter>
-        <parameter key="tmdb.movie_repository.class">Tmdb\Repository\MovieRepository</parameter>
-        <parameter key="tmdb.network_repository.class">Tmdb\Repository\NetworkRepository</parameter>
-        <parameter key="tmdb.people_repository.class">Tmdb\Repository\PeopleRepository</parameter>
-        <parameter key="tmdb.review_repository.class">Tmdb\Repository\ReviewRepository</parameter>
-        <parameter key="tmdb.search_repository.class">Tmdb\Repository\SearchRepository</parameter>
-        <parameter key="tmdb.tv_repository.class">Tmdb\Repository\TvRepository</parameter>
-        <parameter key="tmdb.tv_episode_repository.class">Tmdb\Repository\TvEpisodeRepository</parameter>
-        <parameter key="tmdb.tv_season_repository.class">Tmdb\Repository\TvSeasonRepository</parameter>
-    </parameters>
-
     <services>
-        <service id="tmdb.certification_repository" class="%tmdb.certification_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\AuthenticationRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.changes_repository" class="%tmdb.changes_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\AccountRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.collection_repository" class="%tmdb.collection_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\CertificationRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.company_repository" class="%tmdb.company_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\ChangesRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.configuration_repository" class="%tmdb.configuration_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\CollectionRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.credits_repository" class="%tmdb.credits_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\CompanyRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.discover_repository" class="%tmdb.discover_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\ConfigurationRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.find_repository" class="%tmdb.find_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\CreditsRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.genre_repository" class="%tmdb.genre_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\DiscoverRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.jobs_repository" class="%tmdb.jobs_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\FindRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.keyword_repository" class="%tmdb.keyword_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\GenreRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.list_repository" class="%tmdb.list_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\JobsRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.movie_repository" class="%tmdb.movie_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\KeywordRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.network_repository" class="%tmdb.network_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\ListRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.people_repository" class="%tmdb.people_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\MovieRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.review_repository" class="%tmdb.review_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\NetworkRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.search_repository" class="%tmdb.search_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\PeopleRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.tv_repository" class="%tmdb.tv_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\ReviewRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.tv_season_repository" class="%tmdb.tv_season_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\SearchRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
 
-        <service id="tmdb.tv_episode_repository" class="%tmdb.tv_episode_repository.class%" public="true">
-            <argument type="service" id="tmdb.client" />
+        <service id="Tmdb\Repository\TvRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
+        </service>
+
+        <service id="Tmdb\Repository\TvEpisodeRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
+        </service>
+
+        <service id="Tmdb\Repository\TvSeasonRepository" public="true">
+            <argument type="service" id="Tmdb\Client" />
         </service>
     </services>
 </container>

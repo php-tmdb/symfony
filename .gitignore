@@ -1,4 +1,7 @@
 composer.lock
 .idea/
 vendor/
-
+coverage/
+phpcs.cache
+.phpunit.result.cache
+.phpcs-cache

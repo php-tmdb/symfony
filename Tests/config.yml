@@ -1,4 +1,0 @@
-framework:
-    secret: NopeChuckTesta
-tmdb_symfony:
-    api_key: invalidapikey

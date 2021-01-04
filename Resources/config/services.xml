@@ -4,34 +4,93 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <!-- Options parameters -->
-        <parameter key="tmdb.api_key" />
-        <!-- Main classes -->
-        <parameter key="tmdb.client.class">Tmdb\Client</parameter>
-        <parameter key="tmdb.client_configuration.class">Tmdb\SymfonyBundle\ClientConfiguration</parameter>
-        <parameter key="tmdb.api_token.class">Tmdb\ApiToken</parameter>
-        <parameter key="tmdb.request_token.class">Tmdb\RequestToken</parameter>
-        <parameter key="tmdb.session_token.class">Tmdb\SessionToken</parameter>
-    </parameters>
-
     <services>
-        <service id="tmdb.client" class="%tmdb.client.class%" public="true">
-            <argument type="service" id="tmdb.api_token" />
-            <argument type="service" id="tmdb.configuration" />
+        <service id="Tmdb\Client" class="Tmdb\Client" public="true">
+            <argument type="service" id="Tmdb\SymfonyBundle\ClientConfiguration"/>
         </service>
 
-        <service id="tmdb.api_token" class="%tmdb.api_token.class%" public="false">
-            <argument>%tmdb.api_key%</argument>
+        <service id="Tmdb\Token\Api\ApiToken" class="Tmdb\Token\Api\ApiToken" public="false">
+            <argument>%tmdb.api_token%</argument>
         </service>
 
-        <service id="tmdb.configuration" class="%tmdb.client_configuration.class%" public="false">
-            <argument type="service" id="event_dispatcher" />
-            <argument>%tmdb.options%</argument>
-
-            <call method="setCacheHandler">
-                <argument type="service" id="tmdb.cache_handler" on-invalid="null" />
-            </call>
+        <service id="Tmdb\Token\Api\BearerToken" class="Tmdb\Token\Api\BearerToken" public="false">
+            <argument>%tmdb.bearer_token%</argument>
         </service>
+
+        <service id="Tmdb\HttpClient\HttpClient" class="Tmdb\HttpClient\HttpClient">
+            <factory service="Tmdb\Client" method="getHttpClient"/>
+        </service>
+
+        <!-- Listeners -->
+        <service id="Tmdb\Event\Listener\RequestListener" class="Tmdb\Event\Listener\RequestListener">
+            <argument type="service" id="Tmdb\HttpClient\HttpClient"/>
+            <argument/>
+        </service>
+
+        <service id="Tmdb\Event\Listener\Request\ApiTokenRequestListener"
+                 class="Tmdb\Event\Listener\Request\ApiTokenRequestListener">
+            <argument type="service" id="Tmdb\Token\Api\ApiToken"/>
+        </service>
+
+        <service id="Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener"
+                 class="Tmdb\Event\Listener\Request\ContentTypeJsonRequestListener"/>
+        <service id="Tmdb\Event\Listener\Request\AcceptJsonRequestListener"
+                 class="Tmdb\Event\Listener\Request\AcceptJsonRequestListener"/>
+        <service id="Tmdb\Event\Listener\Request\UserAgentRequestListener"
+                 class="Tmdb\Event\Listener\Request\UserAgentRequestListener">
+            <argument/>
+        </service>
+
+        <!-- This services will be filled by the ConfigurationPass -->
+        <service id="Tmdb\SymfonyBundle\ClientConfiguration" class="Tmdb\SymfonyBundle\ClientConfiguration"
+                 public="false">
+            <argument type="service" id="Tmdb\Token\Api\ApiToken"/>
+            <argument/><!-- PSR-14 Event dispatcher -->
+            <argument/><!-- PSR-18 HTTP Client -->
+            <argument/><!-- PSR-17 Request Factory -->
+            <argument/><!-- PSR-17 Response Factory -->
+            <argument/><!-- PSR-17 Stream Factory -->
+            <argument/><!-- PSR-17 Uri Factory -->
+            <argument>%tmdb.client.options%</argument>
+        </service>
+
+        <!-- These services will be filled by the EventDispatchingCompilerPass -->
+        <service id="Tmdb\Event\Listener\Psr6CachedRequestListener"
+                 class="Tmdb\Event\Listener\Psr6CachedRequestListener">
+            <argument type="service" id="Tmdb\HttpClient\HttpClient"/>
+            <argument/>
+            <argument/>
+            <argument/>
+            <argument>%tmdb.client.options%</argument>
+        </service>
+
+        <service id="Tmdb\Event\Listener\Logger\LogHttpMessageListener"
+                 class="Tmdb\Event\Listener\Logger\LogHttpMessageListener">
+            <argument/>
+            <argument/>
+        </service>
+
+        <service id="Tmdb\Event\Listener\Logger\LogHydrationListener"
+                 class="Tmdb\Event\Listener\Logger\LogHydrationListener">
+            <argument/>
+            <argument/>
+            <argument/>
+        </service>
+
+        <service id="Tmdb\Event\Listener\Logger\LogApiErrorListener"
+                 class="Tmdb\Event\Listener\Logger\LogApiErrorListener">
+            <argument/>
+            <argument/>
+        </service>
+
+        <!-- Formatters -->
+        <service id="Tmdb\Formatter\HttpMessage\SimpleHttpMessageFormatter"
+                 class="Tmdb\Formatter\HttpMessage\SimpleHttpMessageFormatter"/>
+        <service id="Tmdb\Formatter\HttpMessage\FullHttpMessageFormatter"
+                 class="Tmdb\Formatter\HttpMessage\FullHttpMessageFormatter"/>
+        <service id="Tmdb\Formatter\Hydration\SimpleHydrationFormatter"
+                 class="Tmdb\Formatter\Hydration\SimpleHydrationFormatter"/>
+        <service id="Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter"
+                 class="Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter"/>
     </services>
 </container>

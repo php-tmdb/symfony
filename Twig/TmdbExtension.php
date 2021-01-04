@@ -1,8 +1,10 @@
 <?php
+
 namespace Tmdb\SymfonyBundle\Twig;
 
 use Tmdb\Client;
 use Tmdb\Helper\ImageHelper;
+use Tmdb\Repository\AbstractRepository;
 use Tmdb\Repository\ConfigurationRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -19,11 +21,25 @@ class TmdbExtension extends AbstractExtension
      */
     private $client;
 
-    public function __construct(Client $client)
+    /**
+     * @var AbstractRepository|ConfigurationRepository
+     */
+    private $repository;
+
+    /**
+     * TmdbExtension constructor.
+     * @param Client $client
+     * @param AbstractRepository $repository
+     */
+    public function __construct(Client $client, AbstractRepository $repository = null)
     {
         $this->client = $client;
+        $this->repository = $repository ?? new ConfigurationRepository($client);
     }
 
+    /**
+     * @return array|TwigFilter[]
+     */
     public function getFilters()
     {
         return array(
@@ -32,26 +48,41 @@ class TmdbExtension extends AbstractExtension
         );
     }
 
-    public function getHtml($image, $size = 'original', $width = null, $height = null)
+    /**
+     * @param string $image
+     * @param string $size
+     * @param int|null $width
+     * @param int|null $height
+     * @return string
+     */
+    public function getHtml(string $image, string $size = 'original', int $width = null, int $height = null): string
     {
         return $this->getHelper()->getHtml($image, $size, $width, $height);
     }
 
-    public function getUrl($image, $size = 'original')
+    /**
+     * @param string $image
+     * @param string $size
+     * @return string
+     */
+    public function getUrl(string $image, string $size = 'original'): string
     {
         return $this->getHelper()->getUrl($image, $size);
     }
 
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
         return 'tmdb_extension';
     }
 
     /**
-     * @param  null  $client
+     * @param  Client  $client
      * @return $this
      */
-    public function setClient($client)
+    public function setClient(Client $client)
     {
         $this->client = $client;
 
@@ -59,9 +90,9 @@ class TmdbExtension extends AbstractExtension
     }
 
     /**
-     * @return null
+     * @return Client|null
      */
-    public function getClient()
+    public function getClient(): ?Client
     {
         return $this->client;
     }
@@ -86,10 +117,7 @@ class TmdbExtension extends AbstractExtension
             return $this->helper;
         }
 
-        $repository = new ConfigurationRepository($this->client);
-        $config     = $repository->load();
-
-        $this->helper = new ImageHelper($config);
+        $this->helper = new ImageHelper($this->repository->load());
 
         return $this->helper;
     }
