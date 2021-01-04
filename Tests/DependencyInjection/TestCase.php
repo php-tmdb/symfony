@@ -21,12 +21,13 @@ class TestCase extends BaseTestCase
     }
 
     /**
+     * @param ContainerBuilder $container
      * @param string $value
      * @param string $key
      */
-    protected function assertAlias($value, $key): void
+    protected function assertAlias(ContainerBuilder $container, $value, $key): void
     {
-        $this->assertSame($value, (string)$this->container->getAlias($key), sprintf('%s alias is correct', $key));
+        $this->assertSame($value, (string)$container->getAlias($key), sprintf('%s alias is correct', $key));
     }
 
     /**
@@ -148,7 +149,7 @@ cache:
     adapter: Psr\Cache\CacheItemPoolInterface
 log:
     enabled: true
-    adapter: Psr\EventDispatcher\EventDispatcherInterface
+    adapter: Psr\Log\LoggerInterface
     hydration:
         enabled: true
         with_hydration_data: true

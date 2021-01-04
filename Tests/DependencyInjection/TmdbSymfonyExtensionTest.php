@@ -47,9 +47,9 @@ final class TmdbSymfonyExtensionTest extends TestCase
         $config = $this->getMinimalConfig();
         $loader->load([$config], $this->container);
 
-        $this->assertAlias('Tmdb\Client', 'tmdb.client');
-        $this->assertAlias('Tmdb\Repository\MovieRepository', 'tmdb.movie_repository');
-        $this->assertAlias('Tmdb\SymfonyBundle\Twig\TmdbExtension', 'tmdb.twig.image_extension');
+        $this->assertAlias($this->container, 'Tmdb\Client', 'tmdb.client');
+        $this->assertAlias($this->container, 'Tmdb\Repository\MovieRepository', 'tmdb.movie_repository');
+        $this->assertAlias($this->container, 'Tmdb\SymfonyBundle\Twig\TmdbExtension', 'tmdb.twig.image_extension');
     }
 
     /**
@@ -64,7 +64,7 @@ final class TmdbSymfonyExtensionTest extends TestCase
         $config['repositories']['enabled'] = false;
         $loader->load([$config], $this->container);
 
-        $this->assertAlias('Tmdb\Client', 'tmdb.client');
+        $this->assertAlias($this->container, 'Tmdb\Client', 'tmdb.client');
         $this->assertNotAlias('tmdb.movie_repository');
         $this->assertNotHasDefinition('Tmdb\Repository\MovieRepository');
     }
@@ -81,7 +81,7 @@ final class TmdbSymfonyExtensionTest extends TestCase
         $config['twig_extension']['enabled'] = false;
         $loader->load([$config], $this->container);
 
-        $this->assertAlias('Tmdb\Client', 'tmdb.client');
+        $this->assertAlias($this->container, 'Tmdb\Client', 'tmdb.client');
         $this->assertHasDefinition('Tmdb\Repository\MovieRepository');
         $this->assertNotHasDefinition('Tmdb\SymfonyBundle\Twig\TmdbExtension');
     }
@@ -117,7 +117,7 @@ final class TmdbSymfonyExtensionTest extends TestCase
         foreach ($loader->getLegacyAliasMapping() as $group => $mapping) {
             foreach ($mapping as $alias => $serviceIdentifier) {
                 $this->assertHasDefinition($serviceIdentifier);
-                $this->assertAlias($serviceIdentifier, $alias);
+                $this->assertAlias($this->container, $serviceIdentifier, $alias);
             }
         }
     }

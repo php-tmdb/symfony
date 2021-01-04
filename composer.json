@@ -4,7 +4,7 @@
     "type": "symfony-bundle",
     "description": "Symfony Bundle for TMDB (The Movie Database) API. Provides easy access to the php-tmdb/api library.",
     "homepage": "https://github.com/php-tmdb/symfony",
-    "keywords": ["tmdb", "api", "php","wrapper", "movie", "cinema", "tv", "tv show", "tvdb", "symfony", "symfony2", "symfony3"],
+    "keywords": ["tmdb", "api", "php","wrapper", "movie", "cinema", "tv", "tv show", "tvdb", "symfony", "symfony4", "symfony5"],
     "authors": [
         {
             "name": "Michael Roterman",
@@ -14,7 +14,6 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "doctrine/doctrine-cache-bundle": "^1.0",
         "php-tmdb/api": "dev-release/4.0.0 as 4.0.0",
         "symfony/config": "^4.3.7 || <6",
         "symfony/dependency-injection": "^4.3.7 || <6",
@@ -40,7 +39,8 @@
         "phpstan/phpstan": "^0.12.18",
         "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
         "symfony/framework-bundle": "^4.3.7 || ^5.0",
-        "vimeo/psalm": "^4"
+        "vimeo/psalm": "^4",
+        "php-http/cache-plugin": "^1.7"
     },
     "autoload": {
         "psr-4": { "Tmdb\\SymfonyBundle\\": "" }

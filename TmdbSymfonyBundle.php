@@ -2,6 +2,7 @@
 
 namespace Tmdb\SymfonyBundle;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -15,6 +16,7 @@ use Tmdb\SymfonyBundle\DependencyInjection\CompilerPass\EventDispatchingPass;
 /**
  * Class TmdbSymfonyBundle
  * @package Tmdb\SymfonyBundle
+ * @codeCoverageIgnore 
  */
 class TmdbSymfonyBundle extends Bundle
 {
@@ -24,6 +26,7 @@ class TmdbSymfonyBundle extends Bundle
     const PSR17_RESPONSE_FACTORIES = 'tmdb_symfony.psr17.response_factories';
     const PSR17_STREAM_FACTORIES = 'tmdb_symfony.psr17.stream_factories';
     const PSR17_URI_FACTORIES = 'tmdb_symfony.psr17.uri_factories';
+    const PSR14_EVENT_DISPATCHERS = 'tmdb_symfony.psr17.event_dispatchers';
 
     /**
      * @param ContainerBuilder $container
@@ -40,7 +43,8 @@ class TmdbSymfonyBundle extends Bundle
             RequestFactoryInterface::class => self::PSR17_REQUEST_FACTORIES,
             ResponseFactoryInterface::class => self::PSR17_RESPONSE_FACTORIES,
             StreamFactoryInterface::class => self::PSR17_STREAM_FACTORIES,
-            UriFactoryInterface::class => self::PSR17_URI_FACTORIES
+            UriFactoryInterface::class => self::PSR17_URI_FACTORIES,
+            EventDispatcherInterface::class => self::PSR14_EVENT_DISPATCHERS
         ];
 
         foreach ($targets as $interface => $tag) {

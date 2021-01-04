@@ -38,7 +38,13 @@ class EventDispatchingPass implements CompilerPassInterface
         $parameters = $container->getParameter('tmdb.options');
         $clientOptions = $parameters['options'];
 
-        $definition = $container->getDefinition($clientOptions['event_dispatcher']['adapter']);
+        if ($container->hasAlias($clientOptions['event_dispatcher']['adapter'])) {
+            $definition = $container->getDefinition(
+                $container->getAlias($clientOptions['event_dispatcher']['adapter'])
+            );
+        } else {
+            $definition = $container->getDefinition($clientOptions['event_dispatcher']['adapter']);
+        }
 
         if ($definition->getClass() === EventDispatcher::class) {
             $this->handleSymfonyEventDispatcherRegistration($container, $definition, $parameters);
@@ -150,7 +156,7 @@ class EventDispatchingPass implements CompilerPassInterface
      * @param ContainerBuilder $container
      * @param array $parameters
      */
-    private function handleRequestLogging(
+    private function handleLogging(
         string $event,
         string $listener,
         Definition $eventDispatcher,
@@ -168,7 +174,7 @@ class EventDispatchingPass implements CompilerPassInterface
             $options['adapter'] = $parameters['adapter'];
         }
 
-        if (!$container->hasDefinition($options['adapter'])) {
+        if (!$container->hasDefinition($options['adapter']) && !$container->hasAlias($options['adapter'])) {
             throw new \RuntimeException(sprintf(
                 'Unable to find a definition for the adapter to provide tmdb request logging, you gave "%s" for "%s".',
                 $options['adapter'],
@@ -176,24 +182,28 @@ class EventDispatchingPass implements CompilerPassInterface
             ));
         }
 
-        if (!$container->hasDefinition($options['listener'])) {
+        if (!$container->hasDefinition($options['listener']) && !$container->hasAlias($options['listener'])) {
             throw new \RuntimeException(sprintf(
                 'Unable to find a definition for the listener to provide tmdb request logging, you gave "%s" for "%s".',
-                $options['logger'],
+                $options['listener'],
                 sprintf('%s.%s', $configEntry, 'listener')
             ));
         }
 
-        if (!$container->hasDefinition($options['formatter'])) {
+        if (!$container->hasDefinition($options['formatter']) && !$container->hasAlias($options['formatter'])) {
             throw new \RuntimeException(sprintf(
                 'Unable to find a definition for the formatter to provide tmdb request logging, you gave "%s" for "%s".',
-                $options['logger'],
+                $options['formatter'],
                 sprintf('%s.%s', $configEntry, 'formatter')
             ));
         }
 
+        $adapter = $container->hasAlias($options['adapter']) ?
+            $container->getAlias($options['adapter']):
+            $options['adapter'];
+
         $listenerDefinition = $container->getDefinition($options['listener']);
-        $listenerDefinition->replaceArgument(0, new Reference($options['adapter']));
+        $listenerDefinition->replaceArgument(0, new Reference($adapter));
         $listenerDefinition->replaceArgument(1, new Reference($options['formatter']));
 
         // Cannot assume if this was replaced this parameter will be kept.
@@ -229,7 +239,7 @@ class EventDispatchingPass implements CompilerPassInterface
         ];
 
         foreach ($listeners as $event => $listener) {
-            $this->handleRequestLogging(
+            $this->handleLogging(
                 $event,
                 $listener,
                 $eventDispatcher,
