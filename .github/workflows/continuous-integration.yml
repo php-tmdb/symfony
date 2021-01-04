@@ -25,21 +25,62 @@ jobs:
         symfony-deprecations-helper:
           - ""
         include:
-          # Test against latest Symfony 4.3 stable
-          - symfony-require: "4.3.*"
-            php-version: "7.3"
-            deps: "normal"
-
-          # Test against latest Symfony 4.4 dev
+          # Test against latest Symfony 4.4 stable on 7.3
           - symfony-require: "4.4.*"
             php-version: "7.3"
             deps: "dev"
 
-          # Test against latest Symfony 5.2 dev
+          # Test against latest Symfony 5.1 dev on 7.3
+          - symfony-require: "5.1.*"
+            php-version: "7.3"
+            deps: "dev"
+
+          # Test against latest Symfony 5.2 stable on 7.3
           - symfony-require: "5.2.*"
             php-version: "7.3"
             deps: "dev"
 
+          # Test against latest Symfony 5.3 stable on 7.3
+          - symfony-require: "5.3.*"
+            php-version: "7.3"
+            deps: "dev"
+
+          # Test against latest Symfony 4.4 stable on 7.4
+          - symfony-require: "4.4.*"
+            php-version: "7.4"
+            deps: "normal"
+
+          # Test against latest Symfony 5.1 stable on 7.4
+          - symfony-require: "5.1.*"
+            php-version: "7.4"
+            deps: "dev"
+
+          # Test against latest Symfony 5.2 stable on 7.4
+          - symfony-require: "5.2.*"
+            php-version: "7.4"
+            deps: "dev"
+
+          # Test against latest Symfony 4.4 stable on 8.0
+          - symfony-require: "4.4.*"
+            php-version: "8.0"
+            deps: "normal"
+
+          # Test against latest Symfony 5.3 dev on 8.0
+          - symfony-require: "5.1.*"
+            php-version: "8.0"
+            deps: "dev"
+
+          # Test against latest Symfony 5.2 stable on 8.0
+          - symfony-require: "5.2.*"
+            php-version: "8.0"
+            deps: "dev"
+
+          # Test against latest Symfony 5.3 dev on 8.0
+          - symfony-require: "5.3.*"
+            php-version: "8.0"
+            deps: "dev"
+
+          # Test bleeding edge
           - php-version: "8.0"
             deps: "dev"
             symfony-deprecations-helper: "weak"
