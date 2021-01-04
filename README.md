@@ -1,7 +1,12 @@
-Description
-----------------
+# A Symfony Bundle for use together with the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB API Wrapper.
 
-A Symfony Bundle for use together with the [php-tmdb/api](https://github.com/php-tmdb/api) TMDB API Wrapper.
+[![License](https://poser.pugx.org/php-tmdb/symfony/license.png)](https://packagist.org/packages/php-tmdb/symfony)
+[![License](https://img.shields.io/github/v/tag/php-tmdb/symfony)](https://github.com/php-tmdb/symfony/releases)
+[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/symfony/Continuous%20Integration?label=phpunit)](https://github.com/php-tmdb/symfony/actions?query=workflow%3A%22Continuous+Integration%22)
+[![Build Status](https://img.shields.io/github/workflow/status/php-tmdb/symfony/Coding%20Standards?label=phpcs)](https://github.com/php-tmdb/symfony/actions?query=workflow%3A%22Coding+Standards%22)
+[![codecov](https://img.shields.io/codecov/c/github/php-tmdb/symfony?token=gTM9AiO5vH)](https://codecov.io/gh/php-tmdb/symfony)
+[![PHP](https://img.shields.io/badge/php->=7.3,%20>=8.0-8892BF.svg)](https://packagist.org/packages/php-tmdb/symfony)
+[![Total Downloads](https://poser.pugx.org/php-tmdb/symfony/downloads.svg)](https://packagist.org/packages/php-tmdb/symfony)
 
 Installation
 ------------
