@@ -19,7 +19,7 @@
         "symfony/dependency-injection": "^4.4 || <6",
         "symfony/event-dispatcher": "^4.4 || <6",
         "symfony/http-kernel": "^4.4.13 || >=5.1.5",
-        "symfony/phpunit-bridge": "^4.4",
+        "symfony/phpunit-bridge": "^4.4 || <6",
         "symfony/yaml": "^4.4 || ^5.0",
         "twig/twig": "^2.0 || ^3.0"
     },
