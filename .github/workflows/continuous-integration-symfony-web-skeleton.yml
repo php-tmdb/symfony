@@ -1,0 +1,82 @@
+name: "Continuous Integration - Symfony web skeleton"
+
+on: ["pull_request", "push"]
+
+env:
+  fail-fast: true
+
+jobs:
+  phpunit:
+    name: "PHPUnit"
+    runs-on: "ubuntu-20.04"
+    env:
+      SYMFONY_REQUIRE: ${{matrix.symfony-require}}
+
+    strategy:
+      matrix:
+        php-version:
+          - "7.3"
+          - "7.4"
+          - "8.0"
+        symfony-require:
+          - ""
+        include:
+#          - symfony-require: "4.4.*"
+#            php-version: "7.3"
+#
+#          - symfony-require: "4.4.*"
+#            php-version: "7.4"
+#
+#          - symfony-require: "4.4.*"
+#            php-version: "8.0"
+#
+#          - symfony-require: "5.1.*"
+#            php-version: "7.3"
+#
+#          - symfony-require: "5.1.*"
+#            php-version: "7.4"
+#
+#          - symfony-require: "5.1.*"
+#            php-version: "8.0"
+#
+#          - symfony-require: "5.2.*"
+#            php-version: "7.3"
+
+          - symfony-require: "5.2.*"
+            php-version: "7.4"
+
+#          - symfony-require: "5.2.*"
+#            php-version: "8.0"
+#
+#          - symfony-require: "5.3.*"
+#            php-version: "7.3"
+#
+#          - symfony-require: "5.3.*"
+#            php-version: "7.4"
+#
+#          - symfony-require: "5.3.*"
+#            php-version: "8.0"
+    steps:
+      - name: "Install symfony web skeleton project"
+        run: "composer create-project symfony/website-skeleton:${{ matrix.symfony-require }} ."
+
+      - name: "Checkout our code and put in the workspace directory"
+        uses: "actions/checkout@v2"
+        with:
+          fetch-depth: 2
+          path: 'workspace'
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: "${{ matrix.php-version }}"
+
+      - name: "Require base dependencies"
+        run: "composer require symfony/event-dispatcher guzzlehttp/guzzle symfony/cache monolog/monolog nyholm/psr7"
+
+      - name: "Overwrite composer.json to include the local workspace as reference for installation"
+        run: "cat composer.json | sed 's/\\/#####/g' | jq -r '.repositories |= [{\"type\": \"path\",\"url\": \"workspace\"}] + .' | sed 's/#####/\\\\/g > composer.json"
+
+      - name: "Require php-tmdb/symfony"
+        run: "composer require php-tmdb/symfony @dev --prefer-source"
+
