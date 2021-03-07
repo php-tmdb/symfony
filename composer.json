@@ -18,9 +18,8 @@
         "symfony/config": "^4.4 || <6",
         "symfony/dependency-injection": "^4.4 || <6",
         "symfony/event-dispatcher": "^4.4 || <6",
-        "symfony/http-kernel": "^4.4.13 || >=5.1.5",
-        "symfony/phpunit-bridge": "^4.4",
-        "symfony/yaml": "^4.4 || ^5.0",
+        "symfony/http-kernel": "^4.4.13 || ^5.1.5",
+        "symfony/yaml": "^4.4 || <6",
         "twig/twig": "^2.0 || ^3.0"
     },
     "scripts": {
@@ -39,6 +38,7 @@
         "phpstan/phpstan": "^0.12.18",
         "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
         "symfony/framework-bundle": "^4.4 || ^5.0",
+        "symfony/phpunit-bridge": "^4.4 || ^5",
         "vimeo/psalm": "^4",
         "php-http/cache-plugin": "^1.7"
     },
