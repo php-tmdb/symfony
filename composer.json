@@ -18,7 +18,7 @@
         "symfony/config": "^4.4 || <6",
         "symfony/dependency-injection": "^4.4 || <6",
         "symfony/event-dispatcher": "^4.4 || <6",
-        "symfony/http-kernel": "^4.4.13 || <6",
+        "symfony/http-kernel": "^4.4.13 || ^5.1.5",
         "symfony/yaml": "^4.4 || <6",
         "twig/twig": "^2.0 || ^3.0"
     },
