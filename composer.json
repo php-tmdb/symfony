@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": "^7.3 || ^7.4 || ^8.0",
-        "php-tmdb/api": "^4",
+        "php-tmdb/api": "^4.0.7",
         "symfony/config": "^4.4 || <6",
         "symfony/dependency-injection": "^4.4 || <6",
         "symfony/event-dispatcher": "^4.4 || <6",
