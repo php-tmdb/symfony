@@ -1,6 +1,6 @@
 <?php
 
-namespace Tmdb\SymfonyBundle\Twig;
+namespace Tmdb\SymfonyBundle\Tests\Twig;
 
 use PHPUnit\Framework\TestCase;
 use Tmdb\Client;
@@ -8,6 +8,7 @@ use Tmdb\Helper\ImageHelper;
 use Tmdb\Model\Configuration;
 use Tmdb\Model\Image;
 use Tmdb\Repository\AbstractRepository;
+use Tmdb\SymfonyBundle\Twig\TmdbExtension;
 
 class TmdbExtensionTest extends TestCase
 {
