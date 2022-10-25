@@ -48,7 +48,7 @@ class TmdbExtensionTest extends TestCase
 
         $this->assertEquals('//image.tmdb.org/t/p/original/foo.jpg', $extension->getUrl($image));
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" />',
+            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" title="" alt=""/>',
             $extension->getHtml($image)
         );
         $this->assertEquals('tmdb_extension', $extension->getName());
@@ -96,7 +96,7 @@ class TmdbExtensionTest extends TestCase
 
         $this->assertEquals('//image.tmdb.org/t/p/original/foo.jpg', $extension->getUrl($image));
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" />',
+            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" title="" alt=""/>',
             $extension->getHtml($image)
         );
         $this->assertEquals('tmdb_extension', $extension->getName());
