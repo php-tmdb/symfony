@@ -41,11 +41,9 @@ use Tmdb\SymfonyBundle\Twig\TmdbExtension;
 class TmdbSymfonyExtension extends Extension
 {
     /**
-     * @param array<array> $configs
-     * @param ContainerBuilder $container
-     * @return void
+     * @param array<string, mixed> $configs
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
@@ -83,9 +81,9 @@ class TmdbSymfonyExtension extends Extension
     /**
      * Alias mapping for legacy constructs; public to abuse within test suite.
      *
-     * @return array<array>
+     * @return array<string, mixed>
      */
-    public function getLegacyAliasMapping()
+    public function getLegacyAliasMapping(): array
     {
         return [
             'repositories' => [
@@ -128,10 +126,7 @@ class TmdbSymfonyExtension extends Extension
      *
      * @todo major release remove alias mapping of legacy muck :-)
      *
-     * @param ContainerBuilder $container
      * @param array<string> $mapping
-     *
-     * @return void
      */
     protected function performAliasMapping(ContainerBuilder $container, array $mapping = []): void
     {
@@ -145,10 +140,6 @@ class TmdbSymfonyExtension extends Extension
 
     /**
      * Handle general lgeacy aliases.
-     *
-     * @param ContainerBuilder $container
-     *
-     * @return void
      */
     protected function handleLegacyGeneralAliases(ContainerBuilder $container): void
     {
@@ -158,10 +149,6 @@ class TmdbSymfonyExtension extends Extension
 
     /**
      * Map repository legacy aliases
-     *
-     * @param ContainerBuilder $container
-     *
-     * @return void
      */
     protected function handleLegacyRepositoryAliases(ContainerBuilder $container): void
     {
@@ -171,10 +158,6 @@ class TmdbSymfonyExtension extends Extension
 
     /**
      * Map twig legacy aliases
-     *
-     * @param ContainerBuilder $container
-     *
-     * @return void
      */
     protected function handleLegacyTwigExtensionAlias(ContainerBuilder $container): void
     {

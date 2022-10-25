@@ -14,17 +14,13 @@ use Tmdb\Token\Api\BearerToken;
 
 class ConfigurationPass implements CompilerPassInterface
 {
-    /**
-     * @param ContainerBuilder $container
-     *
-     * @return void
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
+        /** @var array<string, mixed> $parameters */
         $parameters = $container->getParameter('tmdb.options');
         $configDefinition = $container->getDefinition(ClientConfiguration::class);
 
-        // By default the first argument is always referenced to the ApiToken.
+        // By default, the first argument is always referenced to the ApiToken.
         if (null !== $bearerToken = $parameters['options']['bearer_token']) {
             $configDefinition->replaceArgument(0, new Reference(BearerToken::class));
         }
@@ -34,11 +30,7 @@ class ConfigurationPass implements CompilerPassInterface
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param Definition $configDefinition
-     * @param array $parameters
-     *
-     * @return void
+     * @param array<string, mixed> $parameters
      */
     private function setupEventDispatcher(
         ContainerBuilder $container,
@@ -58,11 +50,7 @@ class ConfigurationPass implements CompilerPassInterface
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param Definition $configDefinition
-     * @param array $parameters
-     *
-     * @return void
+     * @param array<string, mixed> $parameters
      */
     private function setupHttpClient(
         ContainerBuilder $container,
@@ -122,11 +110,6 @@ class ConfigurationPass implements CompilerPassInterface
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param string $alias
-     * @param string $tag
-     * @param string $configurationPath
-     * @return void
      * @throws \RuntimeException
      */
     protected function tryToAliasAutowiredInterfacesIfPossible(

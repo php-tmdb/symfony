@@ -20,14 +20,8 @@ class ClientConfiguration extends ParameterBag implements ConfigurationInterface
 {
     /**
      * ClientConfiguration constructor.
-     * @param ApiToken $apiToken
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param ClientInterface $client
-     * @param RequestFactoryInterface $requestFactory
-     * @param ResponseFactoryInterface $responseFactory
-     * @param StreamFactoryInterface $streamFactory
-     * @param UriFactoryInterface $uriFactory
-     * @param array $options
+     *
+     * @param array<string, mixed> $options
      */
     public function __construct(
         ApiToken $apiToken,
