@@ -28,10 +28,7 @@ class TmdbSymfonyBundle extends Bundle
     public const PSR17_URI_FACTORIES = 'tmdb_symfony.psr17.uri_factories';
     public const PSR14_EVENT_DISPATCHERS = 'tmdb_symfony.psr17.event_dispatchers';
 
-    /**
-     * @param ContainerBuilder $container
-     */
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         parent::build($container);
 

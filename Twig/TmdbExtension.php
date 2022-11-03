@@ -4,43 +4,29 @@ namespace Tmdb\SymfonyBundle\Twig;
 
 use Tmdb\Client;
 use Tmdb\Helper\ImageHelper;
-use Tmdb\Repository\AbstractRepository;
+use Tmdb\Model\Configuration;
 use Tmdb\Repository\ConfigurationRepository;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class TmdbExtension extends AbstractExtension
 {
-    /**
-     * @var ImageHelper|null
-     */
-    private $helper;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * @var AbstractRepository|ConfigurationRepository
-     */
-    private $repository;
+    private ImageHelper $helper;
 
     /**
      * TmdbExtension constructor.
-     * @param Client $client
-     * @param AbstractRepository $repository
      */
-    public function __construct(Client $client, AbstractRepository $repository = null)
+    public function __construct(Client $client, Configuration $configuration = null)
     {
-        $this->client = $client;
-        $this->repository = $repository ?? new ConfigurationRepository($client);
+        $configuration ??= (new ConfigurationRepository($client))->load();
+
+        $this->helper = new ImageHelper($configuration);
     }
 
     /**
-     * @return array|TwigFilter[]
+     * @return array<int, TwigFilter>
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return array(
             new TwigFilter('tmdb_image_html', array($this, 'getHtml')),
@@ -48,77 +34,18 @@ class TmdbExtension extends AbstractExtension
         );
     }
 
-    /**
-     * @param string $image
-     * @param string $size
-     * @param int|null $width
-     * @param int|null $height
-     * @return string
-     */
     public function getHtml(string $image, string $size = 'original', int $width = null, int $height = null): string
     {
-        return $this->getHelper()->getHtml($image, $size, $width, $height);
+        return $this->helper->getHtml($image, $size, $width, $height);
     }
 
-    /**
-     * @param string $image
-     * @param string $size
-     * @return string
-     */
     public function getUrl(string $image, string $size = 'original'): string
     {
-        return $this->getHelper()->getUrl($image, $size);
+        return $this->helper->getUrl($image, $size);
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return 'tmdb_extension';
-    }
-
-    /**
-     * @param  Client  $client
-     * @return $this
-     */
-    public function setClient(Client $client)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * @return Client|null
-     */
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
-
-    /**
-     * @param  ImageHelper $helper
-     * @return $this
-     */
-    public function setHelper($helper)
-    {
-        $this->helper = $helper;
-
-        return $this;
-    }
-
-    /**
-     * @return ImageHelper
-     */
-    public function getHelper()
-    {
-        if ($this->helper) {
-            return $this->helper;
-        }
-
-        $this->helper = new ImageHelper($this->repository->load());
-
-        return $this->helper;
     }
 }

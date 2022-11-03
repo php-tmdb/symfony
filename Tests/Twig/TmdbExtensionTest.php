@@ -1,18 +1,17 @@
 <?php
 
-namespace Tmdb\SymfonyBundle\Twig;
+namespace Tmdb\SymfonyBundle\Tests\Twig;
 
 use PHPUnit\Framework\TestCase;
 use Tmdb\Client;
-use Tmdb\Helper\ImageHelper;
 use Tmdb\Model\Configuration;
 use Tmdb\Model\Image;
-use Tmdb\Repository\AbstractRepository;
+use Tmdb\Repository\ConfigurationRepository;
+use Tmdb\SymfonyBundle\Twig\TmdbExtension;
 
 class TmdbExtensionTest extends TestCase
 {
     /**
-     * @test
      * @group Twig
      */
     public function testTwigExtension()
@@ -26,14 +25,7 @@ class TmdbExtensionTest extends TestCase
         $configuration = new Configuration();
         $configuration->setImages($responseData['images']);
 
-        $helper = new ImageHelper($configuration);
-
-        $extension = new TmdbExtension($client);
-        $this->assertEquals($client, $extension->getClient());
-
-        $extension->setHelper($helper);
-        $extension->setClient($client);
-        $this->assertEquals($client, $extension->getClient());
+        $extension = new TmdbExtension($client, $configuration);
 
         $image = new Image();
         $image
@@ -48,15 +40,14 @@ class TmdbExtensionTest extends TestCase
 
         $this->assertEquals('//image.tmdb.org/t/p/original/foo.jpg', $extension->getUrl($image));
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" />',
+            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" title="" alt=""/>',
             $extension->getHtml($image)
         );
         $this->assertEquals('tmdb_extension', $extension->getName());
-        $this->assertEquals(2, count($extension->getFilters()));
+        $this->assertCount(2, $extension->getFilters());
     }
 
     /**
-     * @test
      * @group Twig
      */
     public function testRepository()
@@ -70,18 +61,15 @@ class TmdbExtensionTest extends TestCase
         $configuration = new Configuration();
         $configuration->setImages($responseData['images']);
 
-        $helper = new ImageHelper($configuration);
-
-        $repository = $this->getMockBuilder(AbstractRepository::class)
+        $repository = $this->getMockBuilder(ConfigurationRepository::class)
             ->disableOriginalConstructor()
-            ->setMethods(['load', 'getApi', 'getFactory'])
+            ->onlyMethods(['load', 'getApi', 'getFactory'])
             ->getMock()
         ;
 
         $repository->method('load')->willReturn($configuration);
 
-        $extension = new TmdbExtension($client, $repository);
-        $this->assertEquals($client, $extension->getClient());
+        $extension = new TmdbExtension($client, $repository->load());
 
         $image = new Image();
         $image
@@ -96,10 +84,10 @@ class TmdbExtensionTest extends TestCase
 
         $this->assertEquals('//image.tmdb.org/t/p/original/foo.jpg', $extension->getUrl($image));
         $this->assertEquals(
-            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" />',
+            '<img src="//image.tmdb.org/t/p/original/foo.jpg" width="" height="" title="" alt=""/>',
             $extension->getHtml($image)
         );
         $this->assertEquals('tmdb_extension', $extension->getName());
-        $this->assertEquals(2, count($extension->getFilters()));
+        $this->assertCount(2, $extension->getFilters());
     }
 }

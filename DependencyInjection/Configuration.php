@@ -2,6 +2,13 @@
 
 namespace Tmdb\SymfonyBundle\DependencyInjection;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\UriFactoryInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -13,14 +20,16 @@ use Tmdb\Formatter\HttpMessage\SimpleHttpMessageFormatter;
 use Tmdb\Formatter\Hydration\SimpleHydrationFormatter;
 use Tmdb\Formatter\TmdbApiException\SimpleTmdbApiExceptionFormatter;
 
+
 class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritDoc}
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('tmdb_symfony');
+        /** @var ArrayNodeDefinition $rootNode */
         $rootNode = $treeBuilder->getRootNode();
 
         $this->addRootChildren($rootNode);
@@ -31,11 +40,6 @@ class Configuration implements ConfigurationInterface
         return $treeBuilder;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     *
-     * @return void
-     */
     private function addRootChildren(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
@@ -60,11 +64,6 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     *
-     * @return void
-     */
     private function addOptionsSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
@@ -89,7 +88,7 @@ class Configuration implements ConfigurationInterface
                             ->children()
                                 ->scalarNode('adapter')
                                 ->isRequired()->cannotBeEmpty()
-                                ->defaultValue('Psr\EventDispatcher\EventDispatcherInterface')
+                                ->defaultValue(EventDispatcherInterface::class)
                             ->end()
                             ->end()
                         ->end()
@@ -97,23 +96,23 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->scalarNode('client')
-                                    ->defaultValue('Psr\Http\Client\ClientInterface')
+                                    ->defaultValue(ClientInterface::class)
                                     ->info('Reference to a service which implements PSR-18 HTTP Client')
                                 ->end()
                                 ->scalarNode('request_factory')
-                                    ->defaultValue('Psr\Http\Message\RequestFactoryInterface')
+                                    ->defaultValue(RequestFactoryInterface::class)
                                     ->info('Reference to a service which implements PSR-17 HTTP Factories')
                                 ->end()
                                 ->scalarNode('response_factory')
-                                    ->defaultValue('Psr\Http\Message\ResponseFactoryInterface')
+                                    ->defaultValue(ResponseFactoryInterface::class)
                                     ->info('Reference to a service which implements PSR-17 HTTP Factories')
                                 ->end()
                                 ->scalarNode('stream_factory')
-                                    ->defaultValue('Psr\Http\Message\StreamFactoryInterface')
+                                    ->defaultValue(StreamFactoryInterface::class)
                                     ->info('Reference to a service which implements PSR-17 HTTP Factories')
                                 ->end()
                                 ->scalarNode('uri_factory')
-                                    ->defaultValue('Psr\Http\Message\UriFactoryInterface')
+                                    ->defaultValue(UriFactoryInterface::class)
                                     ->info('Reference to a service which implements PSR-17 HTTP Factories')
                                 ->end()
                             ->end()
@@ -133,11 +132,6 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     *
-     * @return void
-     */
     private function addLogSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
@@ -147,7 +141,7 @@ class Configuration implements ConfigurationInterface
                     ->canBeEnabled()
                     ->children()
                         ->scalarNode('adapter')
-                            ->defaultValue('Psr\Log\LoggerInterface')
+                            ->defaultValue(LoggerInterface::class)
                             ->info('When registering a channel in monolog as "tmdb" for example, monolog.logger.tmdb')
                         ->end()
                         ->arrayNode('request_logging')
@@ -202,11 +196,6 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    /**
-     * @param ArrayNodeDefinition $rootNode
-     *
-     * @return void
-     */
     private function addCacheSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode

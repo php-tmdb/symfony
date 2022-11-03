@@ -30,13 +30,9 @@ use Tmdb\Token\Api\BearerToken;
  */
 class EventDispatchingPass implements CompilerPassInterface
 {
-    /**
-     * @param ContainerBuilder $container
-     *
-     * @return void
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
+        /** @var array<string, mixed> $parameters */
         $parameters = $container->getParameter('tmdb.options');
         $clientOptions = $parameters['options'];
 
@@ -54,11 +50,7 @@ class EventDispatchingPass implements CompilerPassInterface
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param Definition $eventDispatcher
-     * @param array $parameters
-     *
-     * @return void
+     * @param array<string, mixed> $parameters
      */
     private function handleSymfonyEventDispatcherRegistration(
         ContainerBuilder $container,
@@ -123,9 +115,7 @@ class EventDispatchingPass implements CompilerPassInterface
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param array $parameters
-     * @return Definition
+     * @param array<string, mixed> $parameters
      */
     private function getRequestListener(
         ContainerBuilder $container,
@@ -139,9 +129,7 @@ class EventDispatchingPass implements CompilerPassInterface
     }
 
     /**
-     * @param ContainerBuilder $container
-     * @param array $parameters
-     * @return Definition
+     * @param array<string, mixed> $parameters
      */
     private function getPsr6CacheRequestListener(
         ContainerBuilder $container,
@@ -154,13 +142,7 @@ class EventDispatchingPass implements CompilerPassInterface
     }
 
     /**
-     * @param string $event
-     * @param string $listener
-     * @param Definition $eventDispatcher
-     * @param ContainerBuilder $container
-     * @param array $parameters
-     *
-     * @return void
+     * @param array<string, mixed> $parameters
      */
     private function handleLogging(
         string $event,
@@ -168,7 +150,7 @@ class EventDispatchingPass implements CompilerPassInterface
         Definition $eventDispatcher,
         ContainerBuilder $container,
         array $parameters
-    ) {
+    ): void {
         $options = $parameters[$listener];
         $configEntry = sprintf('tmdb_symfony.log.%s', $listener);
 
@@ -231,11 +213,7 @@ class EventDispatchingPass implements CompilerPassInterface
     /**
      * Register listeners for logging.
      *
-     * @param ContainerBuilder $container
-     * @param Definition $eventDispatcher
-     * @param array $parameters
-     *
-     * @return void
+     * @param array<string, mixed> $parameters
      */
     private function handleLoggerListeners(ContainerBuilder $container, Definition $eventDispatcher, array $parameters): void
     {
@@ -258,11 +236,6 @@ class EventDispatchingPass implements CompilerPassInterface
         }
     }
 
-    /**
-     * @param Definition $eventDispatcher
-     * @param string $event
-     * @param string $reference
-     */
     private function registerEventListener(
         Definition $eventDispatcher,
         string $event,

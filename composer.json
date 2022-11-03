@@ -13,14 +13,14 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^7.4 || ^8.0",
-        "php-tmdb/api": "^4",
-        "symfony/config": "^4.4 || <6",
-        "symfony/dependency-injection": "^4.4 || <6",
-        "symfony/event-dispatcher": "^4.4 || <6",
-        "symfony/http-kernel": "^4.4.13 || ^5.1.5",
-        "symfony/yaml": "^4.4 || <6",
-        "twig/twig": "^2.0 || ^3.0"
+        "php": "^7.4 || ^8.0",
+        "php-tmdb/api": "^4.0",
+        "symfony/config": "^5.4 || ^6.0",
+        "symfony/dependency-injection": "^5.4 || ^6.0",
+        "symfony/event-dispatcher": "^5.4 || ^6.0",
+        "symfony/http-kernel": "^5.4 || ^6.0",
+        "symfony/yaml": "^5.4 || ^6.0",
+        "twig/twig": "^3.0"
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
@@ -35,14 +35,19 @@
         "slevomat/coding-standard": "^6.4.1",
         "squizlabs/php_codesniffer": "^3.5.8",
         "php-http/guzzle7-adapter": "^0.1",
-        "phpstan/phpstan": "^0.12.18",
+        "phpstan/phpstan": "^1.0",
         "phpunit/phpunit": "^7.5 || ^8.0 || ^9.3",
-        "symfony/framework-bundle": "^4.4 || ^5.0",
-        "symfony/phpunit-bridge": "^4.4 || ^5",
-        "vimeo/psalm": "^4",
+        "symfony/framework-bundle": "^5.4 || ^6.0",
+        "symfony/phpunit-bridge": "^5.4 || ^6.0",
+        "vimeo/psalm": "^4.0",
         "php-http/cache-plugin": "^1.7"
     },
     "autoload": {
         "psr-4": { "Tmdb\\SymfonyBundle\\": "" }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
