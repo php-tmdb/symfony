@@ -262,13 +262,50 @@ Usage
 Obtaining the client
 
 ```php
-$client = $this->get(Tmdb\Client::class);
+<?php
+
+namespace App;
+
+use Tmdb\Client;
+
+class MovieParser
+{
+    private Client $client;
+
+    // Have Symfony auto-wire the client via your constructor
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
+    }
+}
 ```
 
 Obtaining repositories
 
 ```php
-$movie = $this->get(\Tmdb\Repository\MovieRepository::class)->load(13);
+<?php
+
+namespace App;
+
+use Tmdb\Model\AbstractModel;
+use Tmdb\Repository\MovieRepository;
+
+class MovieParser
+{
+    private MovieRepository $movieRepository;
+
+    // Have Symfony auto-wire the repository via your constructor
+    public function __construct(MovieRepository $movieRepository)
+    {
+        $this->movieRepository = $movieRepository;
+    }
+
+    public function findMovie(string $id): AbstractModel
+    {
+        // Use the auto-wired repository in any of your methods
+        return $this->movieRepository->load($id);
+    }
+}
 ```
 
 An overview of all the repositories can be found in the services configuration [repositories.xml](https://github.com/php-tmdb/symfony/blob/master/Resources/config/repositories.xml).
