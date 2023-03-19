@@ -81,12 +81,12 @@ final class ConfigurationPassTest extends TestCase
         $pass = new ConfigurationPass();
         $pass->process($container);
 
-        $this->assertAlias($container, get_class($eventDispatcherMock), EventDispatcherInterface::class);
-        $this->assertAlias($container, get_class($httpClientMock), ClientInterface::class);
-        $this->assertAlias($container, get_class($requestFactoryMock), RequestFactoryInterface::class);
-        $this->assertAlias($container, get_class($responseFactoryMock), ResponseFactoryInterface::class);
-        $this->assertAlias($container, get_class($streamFactoryMock), StreamFactoryInterface::class);
-        $this->assertAlias($container, get_class($uriFactoryMock), UriFactoryInterface::class);
+        $this->assertTag($container, get_class($eventDispatcherMock), TmdbSymfonyBundle::PSR14_EVENT_DISPATCHERS);
+        $this->assertTag($container, get_class($httpClientMock), TmdbSymfonyBundle::PSR18_CLIENTS);
+        $this->assertTag($container, get_class($requestFactoryMock), TmdbSymfonyBundle::PSR17_REQUEST_FACTORIES);
+        $this->assertTag($container, get_class($responseFactoryMock), TmdbSymfonyBundle::PSR17_RESPONSE_FACTORIES);
+        $this->assertTag($container, get_class($streamFactoryMock), TmdbSymfonyBundle::PSR17_STREAM_FACTORIES);
+        $this->assertTag($container, get_class($uriFactoryMock), TmdbSymfonyBundle::PSR17_URI_FACTORIES);
     }
 
     /**

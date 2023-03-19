@@ -8,7 +8,7 @@
 [![PHP](https://img.shields.io/badge/php->=7.3,%20>=7.4,%20>=8.0-8892BF.svg)](https://packagist.org/packages/php-tmdb/api)
 [![Total Downloads](https://poser.pugx.org/php-tmdb/symfony/downloads.svg)](https://packagist.org/packages/php-tmdb/symfony)
 
-Compatible with Symfony 4 and 5, PHP 7.3 and up.
+Compatible with Symfony 5 and 6, PHP 7.4 and up.
 
 ## Buy me a coffee, or a beer :-)
 

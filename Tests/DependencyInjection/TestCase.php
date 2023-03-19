@@ -31,6 +31,16 @@ class TestCase extends BaseTestCase
     }
 
     /**
+     * @param ContainerBuilder $container
+     * @param string $class
+     * @param string $tag
+     */
+    protected function assertTag(ContainerBuilder $container, string $class, string $tag): void
+    {
+        $this->assertArrayHasKey($class, $container->findTaggedServiceIds($tag));
+    }
+
+    /**
      * @param string $key
      */
     protected function assertNotAlias($key): void
